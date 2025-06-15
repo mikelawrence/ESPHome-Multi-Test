@@ -1,0 +1,95 @@
+substitutions:
+  name: "indoor-multi-sensor"
+  friendly_name: "Indoor Multi Sensor"
+  # Settings
+  use_pir_in_presence: "true"                     # When true the PIR is included in this sensor's presence.
+  # Status LED configuration
+  status_day_brightness: "0.5"                    # How bright the Status LED is during the day. 1.0 is 100%.
+  status_night_brightness: "0.20"                 # How bright the Status LED is at nighttime. 1.0 is 100%.
+  status_daytime_lux: "12.0"                      # lux level to switch to daytime LED brightness.
+  status_nighttime_lux: "7.0"                     # lux level to switch to nighttime LED brightness.
+  # CO configuration
+  co_temp_id: "temperature"                       # Temperature to use in CO calibration.
+  co_offset: "0.0"                                # CO sensor offset in ppm. Added to final result. Place sensor outside for a while, take the average, invert and place here.
+  co_sensitivity: "2.000e-9"                      # Figaro TGS5141 CO Sensor Sensitivity in A/ppm of CO (from 2D Barcode).
+  co_manufacture_date: "01/01/1999"               # Figaro TGS5141 CO Sensor Manufacture Date (from 2D Barcode).
+  co_serial_number: "111111111111111111"          # Figaro TGS5141 CO Sensor Serial Number (from 2D Barcode).
+  # SHT4x Configuration 
+  sht4x_temperature_offset: "-4.0"                # SHT4X temperature offset in °C. Added to temperature sensor output.
+  sht4x_humidity_offset: "+14.5"                  # SHT4X humidity offset in %. Added to humidity sensor output.
+  sht4x_output_rate: "60s"                        # How often the sensor publishes the filtered sensor data. All samples in the sht4x_output_rate period are averaged. Sensors are configured to sample every 1s.
+                                                  # In addition to the sht4x_output_rate averaging, humidity has a median filter with a windows_size of sht4x_output_rate * 5 samples. Output rate remains the same.
+  # SCD4X Configuration (Last manual CO2 calibration unknown)
+  scd4x_output_rate: "60s"                        # How often the sensor publishes the averaged sensor data. All samples in the scd4x_output_rate period are averaged. Sensors are configured to sample every 10s.
+  # SGP4X Configuration
+  sgp4x_output_rate: "60s"                        # How often the sensor publishes the filtered sensor data. All samples in the sgp4x_output_rate period are averaged. Sensors are configured to sample every 1s.
+  # INA2XX Configuration
+  INA2XX_output_rate: "60s"                       # How often the INA2XX sensors are published.
+  # Automatically controlled Vent
+  vent_ha_entity: fan.vent_id                     # Humidity controls this Home Assistant vent entity_id. Can be a Fan or Switch.
+                                                  #   You must enable "Allow the device to perform Home Assistant actions." in Home Assistant.
+  vent_use_humidity: "true"                       # Enable Humidity based automatic venting.
+  vent_use_co2: "true"                            # Enable CO2 based automatic venting.
+  vent_min_on_time: "15"                          # In High Humidity Mode the vent stays on this minimum amount of time before it could turn back off, even if humidity is low enough. 
+                                                  #   In Manual Vent Mode the vent is turned off after this time has elapsed.
+  vent_hum_on_trigger: "10.0"                     # Humidity change that will turn vent on. Must be a positive number. Set to 1000 to disable humidity control.
+  vent_hum_off_trigger: "2.5"                     # Humidity difference from baseline that will indicate the end of high humidity. In general this is less than "vent_hum_on_trigger". 
+                                                  #   Sometimes humidity from a shower just doesn't want to get back to where it was. If you make this number zero or less you might cause the vent to stay on.
+  vent_co2_on_trigger: "1100"                     # The level of CO2 that will automaticaly turn on the vent. Set to 10000 to disable CO2 control.
+  vent_co2_off_trigger: "900"                     # The level of CO2 that will automaticaly turn onf the vent. Should be 100-200 points less than the "vent_co2_on_trigger".
+
+packages:
+  # COMMON
+  common:               !include common/common.yaml
+
+  # SENSORS PACKAGE B
+  #   Sensirion SHT4X measures Temperature and Humidity
+  #   Sensirion SCD4X measures Carbon Dioxide (CO2)
+  #   Sensirion SGP4X measures Volatile Organic Compounds (VOC) and Nitrous Oxides (NOx)
+  sht4x_pkgb:           !include common/pkgb-sht4x.yaml
+  scd4x_pkgb:           !include common/pkgb-scd4x.yaml
+  sgp4x_pkgb:           !include common/pkgb-sgp4x.yaml
+
+  # MMWAVE SENSOR - DFRobot C4001 (SENS0609 or SEN0610) - Mike Custom Component
+  c4001_radar:          !include common/radar-c4001.yaml
+
+  # ADDITIONAL - Additional sensors and devices can be used with any PACKAGE and in any combination
+  # Carbon Dioxide (CO)
+  #   Uses Figaro TGS5141 sensor
+  co_add:               !include common/add-co.yaml
+  # Energy Usage
+  #   Uses INA2XX sensor to measure Voltage, Power and Energy Usage
+  ina2xx_add:           !include common/add-ina2xx.yaml
+  # Light Level
+  # Uses TSL2591 sensor
+  tsl2591_add:          !include common/add-tsl2591.yaml
+  # Barometric Pressure
+  #   Uses BMP581 sensor
+  bmp581_add:           !include common/add-bmp581.yaml
+  # Speaker
+  #   Adds audio output and Media Player
+  speaker_add:          !include common/add-speaker.yaml
+  # Microphone
+  #   Adds Sound Level meter
+  microphone_add:       !include common/add-microphone.yaml
+
+  # FEATURES
+  # SCD4X Pressure Compensation - Adds pressure compensation to SCD4X, requires scd4x_pkgb and bmp581_add
+  scd4x_pres_comp_feat: !include common/feat-scd4x-press-comp.yaml
+  # Automatic Vent - Use humidity and oto control a bathroom vent
+  # auto_vent_feat: !include common/feat-auto-vent.yaml
+
+external_components:
+  - source: github://mikelawrence/esphome-components
+    components: [ dfrobot_c4001, ld2450, sen5x, bmp581 ]
+
+dashboard_import:
+  package_import_url: github://mikelawrence/ESPHome-common/config/package-b-radar-ld2410.yaml@main
+  import_full_config: false
+
+esp32_ble_tracker:
+  scan_parameters:
+    active: true
+
+bluetooth_proxy:
+  active: true

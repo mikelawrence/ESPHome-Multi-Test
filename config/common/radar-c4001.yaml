@@ -51,6 +51,7 @@ number:
     on_latency:
       name: Latency On
     off_latency:
+      id: off_latency
       name: Latency Off
     inhibit_time:
       name: Inhibit Time
@@ -72,8 +73,8 @@ sensor:
     internal: true
     update_interval: 1s
     lambda: |-
-      if (id("off_latency")->state != id(internal_timeout)->state) {
-        return id("off_latency")->state;
+      if (id(off_latency).state != id(internal_timeout).state) {
+        return id(off_latency).state;
       } else {
         return {};
       }

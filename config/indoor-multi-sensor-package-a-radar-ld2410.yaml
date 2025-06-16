@@ -75,6 +75,8 @@ packages:
   #  Use humidity to control a bathroom vent
   # auto_vent_feat: !include common/feat-auto-vent.yaml
 
+api:
+
 external_components:
   - source: github://mikelawrence/esphome-components@main
     components: [ dfrobot_c4001, ld2450, sen5x, bmp581 ]

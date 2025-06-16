@@ -35,8 +35,8 @@ substitutions:
   vent_hum_on_trigger: "10.0"                     # Humidity change that will turn vent on. Must be a positive number. Set to 1000 to disable humidity control.
   vent_hum_off_trigger: "2.5"                     # Humidity difference from baseline that will indicate the end of high humidity. In general this is less than "vent_hum_on_trigger". 
                                                   #   Sometimes humidity from a shower just doesn't want to get back to where it was. If you make this number zero or less you might cause the vent to stay on.
-  vent_co2_on_trigger: "1100"                     # The level of CO₂ that will automaticaly turn on the vent. Set to 10000 to disable CO₂ control.
-  vent_co2_off_trigger: "900"                     # The level of CO₂ that will automaticaly turn onf the vent. Should be 100-200 points less than the "vent_co2_on_trigger".
+  vent_co2_on_trigger: "1100"                     # The level of CO₂ that will automatically turn on the vent. Set to 10000 to disable CO₂ control.
+  vent_co2_off_trigger: "900"                     # The level of CO₂ that will automatically turn onf the vent. Should be 100-200 points less than the "vent_co2_on_trigger".
 
 packages:
   # COMMON
@@ -71,7 +71,7 @@ packages:
   # SCD4X Pressure Compensation - Adds pressure compensation to SCD4X, requires scd4x_pkgb and bmp581_add
   scd4x_pres_comp_feat: !include common/feat-scd4x-press-comp.yaml
   # Automatic Vent - Use humidity and CO₂ control a bathroom vent
-  # auto_vent_feat: !include common/feat-auto-vent.yaml
+  # auto_vent_feat:       !include common/feat-auto-vent.yaml
 
 api:
 

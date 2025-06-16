@@ -22,14 +22,14 @@ jobs:
       matrix:
         #### Modify below here to match your project ####
         file:
-          - config/indoor-multi-sensor-package-a-radar-c4001.yaml
-          - config/indoor-multi-sensor-package-a-radar-ld2410.yaml
-          - config/indoor-multi-sensor-package-a-radar-ld2450-mtmz.yaml
-          - config/indoor-multi-sensor-package-a-radar-ld2450-stsz.yaml
-          - config/indoor-multi-sensor-package-b-radar-c4001.yaml
-          - config/indoor-multi-sensor-package-b-radar-ld2410.yaml
-          - config/indoor-multi-sensor-package-b-radar-ld2450-mtmz.yaml
-          - config/indoor-multi-sensor-package-b-radar-ld2450-stsz.yaml
+          - config/indoor-multi-sensor-package-a-radar-c4001
+          - config/indoor-multi-sensor-package-a-radar-ld2410
+          - config/indoor-multi-sensor-package-a-radar-ld2450-mtmz
+          - config/indoor-multi-sensor-package-a-radar-ld2450-stsz
+          - config/indoor-multi-sensor-package-b-radar-c4001
+          - config/indoor-multi-sensor-package-b-radar-ld2410
+          - config/indoor-multi-sensor-package-b-radar-ld2450-mtmz
+          - config/indoor-multi-sensor-package-b-radar-ld2450-stsz
         #### Modify above here to match your project ####
 
         esphome-version:

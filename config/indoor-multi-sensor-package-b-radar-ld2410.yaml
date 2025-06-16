@@ -19,7 +19,7 @@ substitutions:
   sht4x_humidity_offset: "+14.5"                  # SHT4X humidity offset in %. Added to humidity sensor output.
   sht4x_output_rate: "60s"                        # How often the sensor publishes the filtered sensor data. All samples in the sht4x_output_rate period are averaged. Sensors are configured to sample every 1s.
                                                   # In addition to the sht4x_output_rate averaging, humidity has a median filter with a windows_size of sht4x_output_rate * 5 samples. Output rate remains the same.
-  # SCD4X Configuration (Last manual CO2 calibration unknown)
+  # SCD4X Configuration (Last manual CO₂ calibration unknown)
   scd4x_output_rate: "60s"                        # How often the sensor publishes the averaged sensor data. All samples in the scd4x_output_rate period are averaged. Sensors are configured to sample every 10s.
   # SGP4X Configuration
   sgp4x_output_rate: "60s"                        # How often the sensor publishes the filtered sensor data. All samples in the sgp4x_output_rate period are averaged. Sensors are configured to sample every 1s.
@@ -29,14 +29,14 @@ substitutions:
   vent_ha_entity: fan.vent_id                     # Humidity controls this Home Assistant vent entity_id. Can be a Fan or Switch.
                                                   #   You must enable "Allow the device to perform Home Assistant actions." in Home Assistant.
   vent_use_humidity: "true"                       # Enable Humidity based automatic venting.
-  vent_use_co2: "true"                            # Enable CO2 based automatic venting.
+  vent_use_co2: "true"                            # Enable CO₂ based automatic venting.
   vent_min_on_time: "15"                          # In High Humidity Mode the vent stays on this minimum amount of time before it could turn back off, even if humidity is low enough. 
                                                   #   In Manual Vent Mode the vent is turned off after this time has elapsed.
   vent_hum_on_trigger: "10.0"                     # Humidity change that will turn vent on. Must be a positive number. Set to 1000 to disable humidity control.
   vent_hum_off_trigger: "2.5"                     # Humidity difference from baseline that will indicate the end of high humidity. In general this is less than "vent_hum_on_trigger". 
                                                   #   Sometimes humidity from a shower just doesn't want to get back to where it was. If you make this number zero or less you might cause the vent to stay on.
-  vent_co2_on_trigger: "1100"                     # The level of CO2 that will automaticaly turn on the vent. Set to 10000 to disable CO2 control.
-  vent_co2_off_trigger: "900"                     # The level of CO2 that will automaticaly turn onf the vent. Should be 100-200 points less than the "vent_co2_on_trigger".
+  vent_co2_on_trigger: "1100"                     # The level of CO₂ that will automaticaly turn on the vent. Set to 10000 to disable CO₂ control.
+  vent_co2_off_trigger: "900"                     # The level of CO₂ that will automaticaly turn onf the vent. Should be 100-200 points less than the "vent_co2_on_trigger".
 
 packages:
   # COMMON
@@ -44,7 +44,7 @@ packages:
   
   # SENSORS PACKAGE B
   #   Sensirion SHT4X measures Temperature and Humidity
-  #   Sensirion SCD4X measures Carbon Dioxide (CO2)
+  #   Sensirion SCD4X measures Carbon Dioxide (CO₂)
   #   Sensirion SGP4X measures Volatile Organic Compounds (VOC) and Nitrous Oxides (NOx)
   sht4x_pkgb:           !include common/pkgb-sht4x.yaml
   scd4x_pkgb:           !include common/pkgb-scd4x.yaml

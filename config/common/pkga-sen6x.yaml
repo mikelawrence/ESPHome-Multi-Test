@@ -1,6 +1,6 @@
 # PACKAGE A
 #   Adds SEN66 sensors:
-#     Temperature, Humidity, Carbon Dioxide (CO2), Volatile Organic Compounds (VOC), Nitrous Oxides (NOx) and Particulate Matter (PM)
+#     Temperature, Humidity, Carbon Dioxide (CO₂), Volatile Organic Compounds (VOC), Nitrous Oxides (NOx) and Particulate Matter (PM)
 #   Not compatible with PACKAGE B packages
 i2c:
   - id: i2c2_bus
@@ -12,7 +12,7 @@ i2c:
 number:
   - platform: template
     id: co2_forced_cal_value
-    name: "CO2 Calibration Value"
+    name: "CO₂ Calibration Value"
     device_class: carbon_dioxide
     entity_category: CONFIG
     optimistic: true
@@ -35,7 +35,7 @@ button:
     on_press:
       - sen5x.activate_heater: sen66_sensor
   - platform: template
-    name: "CO2 Calibrate"
+    name: "CO₂ Calibrate"
     entity_category: CONFIG
     on_press:
       - sen5x.perform_forced_co2_calibration:
@@ -110,7 +110,7 @@ sensor:
         - filter_out: NAN
         - throttle_average: ${sen6x_output_rate}
     co2:
-      name: "CO2"
+      name: "CO₂"
       auto_self_calibration: false
       accuracy_decimals: 0
       filters:

@@ -17,13 +17,13 @@ binary_sensor:
     name: "Vent Auto Hum"
     id: vent_auto_hum
   - platform: template
-    name: "Vent Auto CO2"
+    name: "Vent Auto CO₂"
     id: vent_auto_co2
   - platform: template
     name: "Vent Manual"
     id: vent_manual
 
-#   Uses humidity, VOC and CO2 to control a bathroom vent
+#   Uses humidity, VOC and CO₂ to control a bathroom vent
 sensor:
   # Long'ish humidity average looking to approximate a 6 hour sliding moving average
   - platform: copy
@@ -100,7 +100,7 @@ script:
           static unsigned long start_time;
           constexpr const char *const ESP_LOG_TAG = "auto_vent";
           constexpr const char *const ESP_LOG_MSG_HIGH_HUM = "Detected high humidity";
-          constexpr const char *const ESP_LOG_MSG_HIGH_CO2 = "Detected high CO2";
+          constexpr const char *const ESP_LOG_MSG_HIGH_CO₂ = "Detected high CO₂";
           constexpr const char *const ESP_LOG_MSG_MAN_OFF = "Manually turned off, turning back on";
           float on_time_seconds;
           float co2_value = 0;
@@ -137,7 +137,7 @@ script:
               id(vent_auto_hum).publish_state(true);
               state = 10;
             } else if (co2_is_high) {
-              ESP_LOGD(ESP_LOG_TAG,  "Detected high CO2");
+              ESP_LOGD(ESP_LOG_TAG,  "Detected high CO₂");
               id(ha_vent).turn_on();
               id(vent_auto_co2).publish_state(true);
               state = 60;
@@ -238,7 +238,7 @@ script:
               state = 0;
             }
             break;
-          // High CO2
+          // High CO₂
           case 60:
             if (humidity_is_high) {
               ESP_LOGD(ESP_LOG_TAG,  ESP_LOG_MSG_HIGH_HUM);
@@ -247,7 +247,7 @@ script:
               id(vent_manual).publish_state(false);
               state = 10;
             } else if (co2_is_low) {
-              ESP_LOGD(ESP_LOG_TAG,  "Vent high CO2 cycle complete");
+              ESP_LOGD(ESP_LOG_TAG,  "Vent high CO₂ cycle complete");
               id(ha_vent).turn_off();
               id(vent_auto_co2).publish_state(false);
               state = 0;

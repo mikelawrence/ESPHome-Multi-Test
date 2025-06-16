@@ -77,7 +77,7 @@ api:
 
 external_components:
   - source: github://mikelawrence/esphome-components@main
-    components: [ dfrobot_c4001, ld2450, sen5x, bmp581 ]
+    components: [ sen5x, bmp581 ]
 
 dashboard_import:
   package_import_url: github://mikelawrence/ESPHome-Multi-Test/config/indoor-multi-sensor-config/package-b-radar-ld2410.yaml@main

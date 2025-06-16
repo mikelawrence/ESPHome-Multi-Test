@@ -80,7 +80,7 @@ external_components:
     components: [ dfrobot_c4001, ld2450, sen5x, bmp581 ]
 
 dashboard_import:
-  package_import_url: github://mikelawrence/ESPHome-Multi-Test/config/common/indoor-multi-sensor-package-b-radar-ld2450-mtmz.yaml@main
+  package_import_url: github://mikelawrence/ESPHome-Multi-Test/config/indoor-multi-sensor-package-b-radar-ld2450-mtmz.yaml@main
   import_full_config: false
 
 esp32_ble_tracker:

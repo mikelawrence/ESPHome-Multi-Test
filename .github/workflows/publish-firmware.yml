@@ -22,7 +22,7 @@ jobs:
         config/indoor-multi-sensor-package-b-radar-ld2410.yaml
         config/indoor-multi-sensor-package-b-radar-ld2450-mtmz.yaml
         config/indoor-multi-sensor-package-b-radar-ld2450-stsz.yaml
-      esphome-version: 2025.4.0
+      esphome-version: 2025.5.2
       combined-name: ESPHome-Multi-Test
       #### Modify above here to match your project ####
 

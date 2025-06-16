@@ -14,11 +14,9 @@ media_player:
     announcement_pipeline:
       speaker: announcement_spk_resampling_input
       num_channels: 1
-    # files:
-    #   - id: smoke_alarm_sound
-    #     file: indoor-multi-sensor/fast-beep.flac
-    #   - id: co_alarm_sound
-    #     file: indoor-multi-sensor/CO-alarm-message.mp3
+    files:
+      - id: co_alarm_sound
+        file: common/media/CO-alarm-message.mp3
 
 power_supply:
   - id: dac_enable
@@ -46,39 +44,3 @@ speaker:
     id: announcement_spk_resampling_input
     output_speaker: announcement_spk_mixer_input
     sample_rate: 48000
-
-switch:
-  - platform: template
-    name: "Ring Timer"
-    id: timer_ringing
-    optimistic: true
-    restore_mode: ALWAYS_OFF
-    on_turn_off:
-        # Stop playing the alarm
-        - media_player.stop:
-            announcement: true
-        - mixer_speaker.apply_ducking:  # Stop ducking the media stream over 2 seconds
-            id: media_spk_mixer_input
-            decibel_reduction: 0
-            duration: 2.0s
-    on_turn_on:
-        # Duck media audio by 20 decibels instantly
-        - mixer_speaker.apply_ducking:
-            id: media_spk_mixer_input
-            decibel_reduction: 20
-            duration: 0.0s
-        - while:
-            condition:
-              switch.is_on: timer_ringing
-            then:
-              # Play the alarm sound as an announcement
-              - media_player.speaker.play_on_device_media_file:
-                  media_file: co_alarm_sound
-                  announcement: true
-              # Wait until the alarm sound starts playing
-              - wait_until:
-                  media_player.is_announcing:
-              # Wait until the alarm sound stops playing
-              - wait_until:
-                  not:
-                    media_player.is_announcing:

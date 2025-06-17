@@ -14,16 +14,16 @@ jobs:
     with:
       #### Modify below here to match your project ####
       files: |
-        config/indoor-multi-sensor-pkg-a-radar-c4001.yaml
-        config/indoor-multi-sensor-pkg-a-radar-ld2410.yaml
-        config/indoor-multi-sensor-pkg-a-radar-ld2450-mtmz.yaml
-        config/indoor-multi-sensor-pkg-a-radar-ld2450-stsz.yaml
-        config/indoor-multi-sensor-pkg-b-radar-c4001.yaml
-        config/indoor-multi-sensor-pkg-b-radar-ld2410.yaml
-        config/indoor-multi-sensor-pkg-b-radar-ld2450-mtmz.yaml
-        config/indoor-multi-sensor-pkg-b-radar-ld2450-stsz.yaml
+        config/esphome-multi-test-pkg-a-radar-c4001.yaml
+        config/esphome-multi-test-pkg-a-radar-ld2410.yaml
+        config/esphome-multi-test-pkg-a-radar-ld2450-mtmz.yaml
+        config/esphome-multi-test-pkg-a-radar-ld2450-stsz.yaml
+        config/esphome-multi-test-pkg-b-radar-c4001.yaml
+        config/esphome-multi-test-pkg-b-radar-ld2410.yaml
+        config/esphome-multi-test-pkg-b-radar-ld2450-mtmz.yaml
+        config/esphome-multi-test-pkg-b-radar-ld2450-stsz.yaml
       esphome-version: 2025.5.2
-      combined-name: ESPHome-Multi-Test
+      combined-name: esphome-multi-test
       #### Modify above here to match your project ####
 
       release-summary: ${{ github.event.release.body }}

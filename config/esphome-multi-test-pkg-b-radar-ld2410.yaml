@@ -1,6 +1,6 @@
 substitutions:
-  name: "indoor-multi-sensor"
-  friendly_name: "Indoor Multi Sensor"
+  name: "esphome-multi-test"
+  friendly_name: "ESPHome Multi Test"
   # Settings
   use_pir_in_presence: "true"                     # When true the PIR is included in this sensor's presence.
   # Status LED configuration
@@ -50,8 +50,8 @@ packages:
   scd4x_pkgb:           !include common/pkgb-scd4x.yaml
   sgp4x_pkgb:           !include common/pkgb-sgp4x.yaml
 
-  # MMWAVE SENSOR - Hi-Link LD2450 - Multi-Target Multi-Zone - Mike Custom Component
-  ld2450_radar:         !include common/radar-ld2450ml-mtmz.yaml
+  # MMWAVE SENSOR - Hi-Link LD2410 - Built-In ESPHome component
+  ld2410_radar:         !include common/radar-ld2410.yaml
 
   # ADDITIONAL - Additional sensors and devices can be used with any PACKAGE and in any combination
   # Carbon Dioxide (CO) - Uses Figaro TGS5141 sensor
@@ -77,15 +77,15 @@ api:
 
 external_components:
   - source: github://mikelawrence/esphome-components@main
-    components: [ ld2450, sen5x, bmp581 ]
+    components: [ sen5x, bmp581 ]
 
 dashboard_import:
-  package_import_url: github://mikelawrence/ESPHome-Multi-Test/config/indoor-multi-sensor-pkg-b-radar-ld2450-mtmz.yaml@main
+  package_import_url: github://mikelawrence/ESPHome-Multi-Test/config/esphome-multi-test-pkg-b-radar-ld2410.yaml@main
   import_full_config: false
 
-esp32_ble_tracker:
-  scan_parameters:
-    active: true
+# esp32_ble_tracker:
+#   scan_parameters:
+#     active: true
 
 bluetooth_proxy:
   active: true

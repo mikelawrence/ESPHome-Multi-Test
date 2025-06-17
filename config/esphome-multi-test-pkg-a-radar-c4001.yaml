@@ -1,6 +1,6 @@
 substitutions:
-  name: "indoor-multi-sensor"
-  friendly_name: "Indoor Multi Sensor"
+  name: "esphome-multi-test"
+  friendly_name: "ESPHome Multi Test"
   # Settings
   use_pir_in_presence: "true"                     # When true the PIR is included in this sensor's presence.
   # Status LED configuration
@@ -14,15 +14,11 @@ substitutions:
   co_sensitivity: "2.000e-9"                      # Figaro TGS5141 CO Sensor Sensitivity in A/ppm of CO (from 2D Barcode).
   co_manufacture_date: "01/01/1999"               # Figaro TGS5141 CO Sensor Manufacture Date (from 2D Barcode).
   co_serial_number: "111111111111111111"          # Figaro TGS5141 CO Sensor Serial Number (from 2D Barcode).
-  # SHT4x Configuration 
-  sht4x_temperature_offset: "-4.0"                # SHT4X temperature offset in °C. Added to temperature sensor output.
-  sht4x_humidity_offset: "+14.5"                  # SHT4X humidity offset in %. Added to humidity sensor output.
-  sht4x_output_rate: "60s"                        # How often the sensor publishes the filtered sensor data. All samples in the sht4x_output_rate period are averaged. Sensors are configured to sample every 1s.
-                                                  # In addition to the sht4x_output_rate averaging, humidity has a median filter with a windows_size of sht4x_output_rate * 5 samples. Output rate remains the same.
-  # SCD4X Configuration (Last manual CO₂ calibration unknown)
-  scd4x_output_rate: "60s"                        # How often the sensor publishes the averaged sensor data. All samples in the scd4x_output_rate period are averaged. Sensors are configured to sample every 10s.
-  # SGP4X Configuration
-  sgp4x_output_rate: "60s"                        # How often the sensor publishes the filtered sensor data. All samples in the sgp4x_output_rate period are averaged. Sensors are configured to sample every 1s.
+  # SEN6X Configuration
+  sen6x_temperature_offset: "0.0"                 # SEN6X temperature offset in °C. Added to temperature sensor output.
+  sen6x_humidity_offset: "0.0"                    # SEN6X humidity offset in %. Added to humidity sensor output.
+  sen6x_output_rate: "60s"                        # How often the sensor publishes the filtered sensor data. All samples in the sen6x_output_rate period are averaged. Sensors are configured to sample every 1s.
+  sen6x_calibration_date: "01/01/1999"            # Last CO₂ calibration date.
   # INA2XX Configuration
   INA2XX_output_rate: "60s"                       # How often the INA2XX sensors are published.
   # Automatically controlled Vent
@@ -42,16 +38,15 @@ packages:
   # COMMON
   common:               !include common/common.yaml
   
-  # SENSORS PACKAGE B
-  #   Sensirion SHT4X measures Temperature and Humidity
-  #   Sensirion SCD4X measures Carbon Dioxide (CO₂)
-  #   Sensirion SGP4X measures Volatile Organic Compounds (VOC) and Nitrous Oxides (NOx)
-  sht4x_pkgb:           !include common/pkgb-sht4x.yaml
-  scd4x_pkgb:           !include common/pkgb-scd4x.yaml
-  sgp4x_pkgb:           !include common/pkgb-sgp4x.yaml
+  # SENSORS
+  # PACKAGE A
+  #   Sensirion SEN66 measures Temperature, Humidity, Carbon Dioxide (CO₂), 
+  #     Volatile Organic Compounds (VOC), Nitrous Oxides (NOx) 
+  #     and Particulate Matter (PM)
+  sen6x_pkga:           !include common/pkga-sen6x.yaml
 
-  # MMWAVE SENSOR - Hi-Link LD2410 - Built-In ESPHome component
-  ld2410_radar:         !include common/radar-ld2410.yaml
+  # MMWAVE SENSOR - DFRobot C4001 (SENS0609 or SEN0610) - Mike Custom Component
+  c4001_radar:          !include common/radar-c4001.yaml
 
   # ADDITIONAL - Additional sensors and devices can be used with any PACKAGE and in any combination
   # Carbon Dioxide (CO) - Uses Figaro TGS5141 sensor
@@ -68,8 +63,8 @@ packages:
   microphone_add:       !include common/add-microphone.yaml
 
   # FEATURES
-  # SCD4X Pressure Compensation - Adds pressure compensation to SCD4X, requires scd4x_pkgb and bmp581_add
-  scd4x_pres_comp_feat: !include common/feat-scd4x-press-comp.yaml
+  # SEN6X Pressure Compensation - Adds pressure compensation to SEN6X, requires sen6x_pkga and bmp581_add
+  sen6x_pres_comp_feat: !include common/feat-sen6x-press-comp.yaml
   # Automatic Vent - Use humidity and CO₂ control a bathroom vent
   # auto_vent_feat:       !include common/feat-auto-vent.yaml
 
@@ -77,11 +72,11 @@ api:
 
 external_components:
   - source: github://mikelawrence/esphome-components@main
-    components: [ sen5x, bmp581 ]
+    components: [ dfrobot_c4001, sen5x, bmp581 ]
 
-dashboard_import:
-  package_import_url: github://mikelawrence/ESPHome-Multi-Test/config/indoor-multi-sensor-pkg-b-radar-ld2410.yaml@main
-  import_full_config: false
+# dashboard_import:
+#   package_import_url: github://mikelawrence/ESPHome-Multi-Test/config/esphome-multi-test-pkg-a-radar-c4001.yaml@main
+#   import_full_config: false
 
 esp32_ble_tracker:
   scan_parameters:

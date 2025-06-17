@@ -22,14 +22,14 @@ jobs:
       matrix:
         #### Modify below here to match your project ####
         file:
-          - esphome-multi-test-pkg-a-radar-c4001-esp32s3
-          - esphome-multi-test-pkg-a-radar-ld2410-esp32s3
-          - esphome-multi-test-pkg-a-radar-ld2450-mtmz-esp32s3
-          - esphome-multi-test-pkg-a-radar-ld2450-stsz-esp32s3
-          - esphome-multi-test-pkg-b-radar-c4001-esp32s3
-          - esphome-multi-test-pkg-b-radar-ld2410-esp32s3
-          - esphome-multi-test-pkg-b-radar-ld2450-mtmz-esp32s3
-          - esphome-multi-test-pkg-b-radar-ld2450-stsz-esp32s3
+          - indoor-multi-sensor-pkg-a-radar-c4001
+          - indoor-multi-sensor-pkg-a-radar-ld2410
+          - indoor-multi-sensor-pkg-a-radar-ld2450-mtmz
+          - indoor-multi-sensor-pkg-a-radar-ld2450-stsz
+          - indoor-multi-sensor-pkg-b-radar-c4001
+          - indoor-multi-sensor-pkg-b-radar-ld2410
+          - indoor-multi-sensor-pkg-b-radar-ld2450-mtmz
+          - indoor-multi-sensor-pkg-b-radar-ld2450-stsz
         #### Modify above here to match your project ####
 
         esphome-version:
@@ -43,8 +43,8 @@ jobs:
         with:
           yaml-file: ${{ matrix.file }}.yaml
           version: ${{ matrix.esphome-version }}
-      - name: ESPHome ${{ matrix.esphome-version }} Factory
-        uses: esphome/build-action@v7
-        with:
-          yaml-file: ${{ matrix.file }}.factory.yaml
-          version: ${{ matrix.esphome-version }}
+      # - name: ESPHome ${{ matrix.esphome-version }} Factory
+      #   uses: esphome/build-action@v7
+      #   with:
+      #     yaml-file: ${{ matrix.file }}.factory.yaml
+      #     version: ${{ matrix.esphome-version }}

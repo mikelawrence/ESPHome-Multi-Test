@@ -80,7 +80,7 @@ external_components:
     components: [ sen5x, bmp581 ]
 
 dashboard_import:
-  package_import_url: github://mikelawrence/ESPHome-Multi-Test/config/indoor-multi-sensor-config/package-b-radar-ld2410.yaml@main
+  package_import_url: github://mikelawrence/ESPHome-Multi-Test/config/indoor-multi-sensor-pkg-b-radar-ld2410.yaml@main
   import_full_config: false
 
 esp32_ble_tracker:

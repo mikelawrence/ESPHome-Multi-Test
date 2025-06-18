@@ -3,10 +3,10 @@ name: Publish Firmware
 on:
   release:
     types: [published]
-  pull_request:
-    paths:
-      - '*.yaml'
-      - '.github/workflows/ci.yml'
+  push:
+    branches:
+      - main
+      - dev
 
 permissions:
   contents: write

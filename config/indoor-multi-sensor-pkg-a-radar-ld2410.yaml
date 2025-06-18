@@ -38,7 +38,7 @@ packages:
   common:               !include common/common.yaml
   
   # SENSORS - PACKAGE A
-  #   Sensirion SEN66 measures Temperature, Humidity, Carbon Dioxide (CO₂), 
+  #   Sensirion SEN66 measures Temperature, Humidity, Carbon Dioxide (CO₂),  
   #     Volatile Organic Compounds (VOC), Nitrous Oxides (NOx) 
   #     and Particulate Matter (PM)
   sen6x_pkga:           !include common/pkga-sen6x.yaml

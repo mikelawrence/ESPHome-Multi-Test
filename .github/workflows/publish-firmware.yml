@@ -20,16 +20,16 @@ jobs:
       release-url: ${{ github.event.release.html_url }}
       release-version: ${{ github.event.release.tag_name }}
 
-  # build-pkg-a-radar-ld2410:
-  #   name: Build Package A -  Radar LD2410
-  #   uses: esphome/workflows/.github/workflows/build.yml@main
-  #   with:
-  #     files: config/indoor-multi-sensor-pkg-a-radar-ld2410.yaml
-  #     esphome-version: latest
-  #     combined-name: indoor-multi-sensor-pkg-a-radar-ld2410
-  #     release-summary: ${{ github.event.release.body }}
-  #     release-url: ${{ github.event.release.html_url }}
-  #     release-version: ${{ github.event.release.tag_name }}
+  build-pkg-a-radar-ld2410:
+    name: Build Package A -  Radar LD2410
+    uses: esphome/workflows/.github/workflows/build.yml@main
+    with:
+      files: config/indoor-multi-sensor-pkg-a-radar-ld2410.yaml
+      esphome-version: latest
+      combined-name: indoor-multi-sensor-pkg-a-radar-ld2410
+      release-summary: ${{ github.event.release.body }}
+      release-url: ${{ github.event.release.html_url }}
+      release-version: ${{ github.event.release.tag_name }}
 
   # build-pkg-a-radar-ld2450-mtmz:
   #   name: Build Package A -  Radar LD2450 Multi-Target Multi-Zone

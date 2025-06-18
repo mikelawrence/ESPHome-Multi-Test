@@ -15,7 +15,7 @@ jobs:
     with:
       files: config/indoor-multi-sensor-pkg-a-radar-c4001.yaml
       esphome-version: latest
-      # combined-name: indoor-multi-sensor
+      combined-name: indoor-multi-sensor-pkg-a-radar-c4001
       release-summary: ${{ github.event.release.body }}
       release-url: ${{ github.event.release.html_url }}
       release-version: ${{ github.event.release.tag_name }}
@@ -26,7 +26,7 @@ jobs:
     with:
       files: config/indoor-multi-sensor-pkg-a-radar-ld2410.yaml
       esphome-version: latest
-      # combined-name: indoor-multi-sensor
+      combined-name: indoor-multi-sensor-pkg-a-radar-ld2410
       release-summary: ${{ github.event.release.body }}
       release-url: ${{ github.event.release.html_url }}
       release-version: ${{ github.event.release.tag_name }}
@@ -37,7 +37,7 @@ jobs:
     with:
       files: config/indoor-multi-sensor-pkg-a-radar-ld2450-mtmz.yaml
       esphome-version: latest
-      # combined-name: indoor-multi-sensor
+      combined-name: indoor-multi-sensor-pkg-a-radar-ld2450-mtmz
       release-summary: ${{ github.event.release.body }}
       release-url: ${{ github.event.release.html_url }}
       release-version: ${{ github.event.release.tag_name }}
@@ -48,7 +48,7 @@ jobs:
     with:
       files: config/indoor-multi-sensor-pkg-a-radar-ld2450-stsz.yaml
       esphome-version: latest
-      # combined-name: indoor-multi-sensor
+      combined-name: indoor-multi-sensor-pkg-a-radar-ld2450-stsz
       release-summary: ${{ github.event.release.body }}
       release-url: ${{ github.event.release.html_url }}
       release-version: ${{ github.event.release.tag_name }}
@@ -59,7 +59,7 @@ jobs:
     with:
       files: config/indoor-multi-sensor-pkg-b-radar-c4001.yaml
       esphome-version: latest
-      # combined-name: indoor-multi-sensor
+      combined-name: indoor-multi-sensor-pkg-b-radar-c4001
       release-summary: ${{ github.event.release.body }}
       release-url: ${{ github.event.release.html_url }}
       release-version: ${{ github.event.release.tag_name }}
@@ -70,7 +70,7 @@ jobs:
     with:
       files: config/indoor-multi-sensor-pkg-b-radar-ld2410.yaml
       esphome-version: latest
-      # combined-name: indoor-multi-sensor
+      combined-name: indoor-multi-sensor-pkg-b-radar-ld2410
       release-summary: ${{ github.event.release.body }}
       release-url: ${{ github.event.release.html_url }}
       release-version: ${{ github.event.release.tag_name }}
@@ -81,7 +81,7 @@ jobs:
     with:
       files: config/indoor-multi-sensor-pkg-b-radar-ld2450-mtmz.yaml
       esphome-version: latest
-      # combined-name: indoor-multi-sensor
+      combined-name: indoor-multi-sensor-pkg-b-radar-ld2450-mtmz
       release-summary: ${{ github.event.release.body }}
       release-url: ${{ github.event.release.html_url }}
       release-version: ${{ github.event.release.tag_name }}
@@ -92,7 +92,7 @@ jobs:
     with:
       files: config/indoor-multi-sensor-pkg-b-radar-ld2450-stsz.yaml
       esphome-version: latest
-      # combined-name: indoor-multi-sensor
+      combined-name: indoor-multi-sensor-pkg-b-radar-ld2450-stsz
       release-summary: ${{ github.event.release.body }}
       release-url: ${{ github.event.release.html_url }}
       release-version: ${{ github.event.release.tag_name }}

@@ -102,12 +102,12 @@ jobs:
     uses: esphome/workflows/.github/workflows/upload-to-gh-release.yml@main
     needs:
       - build-pkg-a-radar-c4001
-      - build-pkg-a-radar-ld2410
-      - build-pkg-a-radar-ld2450-mtmz
-      - build-pkg-a-radar-ld2450-stsz
-      - build-pkg-b-radar-c4001
-      - build-pkg-b-radar-ld2410
-      - build-pkg-b-radar-ld2450-mtmz
-      - build-pkg-b-radar-ld2450-stsz
+      # - build-pkg-a-radar-ld2410
+      # - build-pkg-a-radar-ld2450-mtmz
+      # - build-pkg-a-radar-ld2450-stsz
+      # - build-pkg-b-radar-c4001
+      # - build-pkg-b-radar-ld2410
+      # - build-pkg-b-radar-ld2450-mtmz
+      # - build-pkg-b-radar-ld2450-stsz
     with:
       version: ${{ github.event.release.tag_name }}

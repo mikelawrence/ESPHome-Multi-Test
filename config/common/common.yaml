@@ -106,7 +106,7 @@ script:
             ESP_LOGD("status", "Status LED turned off");
           }
         } else {
-          if ((last_state == false) || (last_r != r) || (last_g != g) || 
+          if ((last_state == false) || (last_r != r) || (last_g != g) ||
             (last_b != b) || (last_brightness != brightness)) {
             id(led_status).turn_on().set_transition_length(0).
               set_rgb(r, g, b).set_brightness(brightness).perform();
@@ -125,7 +125,7 @@ binary_sensor:
     id: presence
     device_class: presence
     lambda: |-
-      if(id(presence_mmwwave).state or 
+      if(id(presence_mmwwave).state or
         (id(pir_enable).state && id(motion_pir).state)) {
         return true;
       } else {

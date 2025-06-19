@@ -1,6 +1,8 @@
 # PACKAGE A
 #   Adds SEN66 sensors:
-#     Temperature, Humidity, Carbon Dioxide (CO₂), Volatile Organic Compounds (VOC), Nitrous Oxides (NOx) and Particulate Matter (PM)
+#     Temperature, Humidity, Carbon Dioxide (CO₂), 
+#     Volatile Organic Compounds (VOC), Nitrous Oxides (NOx) and 
+#     Particulate Matter (PM)
 #   Not compatible with PACKAGE B packages
 i2c:
   - id: i2c2_bus

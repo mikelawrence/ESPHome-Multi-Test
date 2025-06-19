@@ -25,7 +25,7 @@ binary_sensor:
 
 #   Uses humidity, VOC and CO₂ to control a bathroom vent
 sensor:
-  # Long'ish humidity average looking to approximate a 6 hour sliding moving average
+  # Long'ish humidity average
   - platform: copy
     id: humidity_long_avg
     source_id: humidity_internal
@@ -53,7 +53,7 @@ sensor:
           long_avg = alpha * x + (1 - alpha) * long_avg;
           return long_avg;
 
-  # Short'ish humidity average looking to approximate a 20 minute sliding moving average
+  # Short'ish humidity average
   - platform: copy
     id: humidity_short_avg
     source_id: humidity_internal
@@ -69,7 +69,8 @@ sensor:
             if (!isnan(x)) {
               short_avg = x;
               first = false;
-              ESP_LOGD("auto_vent", "Humidity Short Average, alpha = %f", alpha);
+              ESP_LOGD("auto_vent", "Humidity Short Average, alpha = %f",
+                alpha);
               return short_avg;
             } else {
               return x;
@@ -116,14 +117,17 @@ script:
           co2_value = id(co2)->state;
         }
         if (state != 0) {
-          on_time_seconds = round(static_cast<float>(millis() - start_time) / 1000.0);
+          on_time_seconds = round(static_cast<float>(millis() - start_time) /
+            1000.0);
         } else {
           on_time_seconds = 0.0;
         }
         // compute conditions
         bool humidity_is_high = hum - hum_long_avg >= ${vent_hum_on_trigger};
-        bool humidity_is_low = (hum - hum_long_avg <= ${vent_hum_off_trigger}) && (hum_short_avg - hum_long_avg <= ${vent_hum_off_trigger});
-        bool vent_on_min_time = on_time_seconds >= static_cast<float>(${vent_min_on_time} * 60);
+        bool humidity_is_low = (hum - hum_long_avg <= ${vent_hum_off_trigger})
+          && (hum_short_avg - hum_long_avg <= ${vent_hum_off_trigger});
+        bool vent_on_min_time = on_time_seconds >= 
+          static_cast<float>(${vent_min_on_time} * 60);
         bool co2_is_high = co2_value >= ${vent_co2_on_trigger};
         bool co2_is_low = co2_value <= ${vent_co2_off_trigger};
         // State Machine
@@ -258,6 +262,10 @@ script:
           break;
         }
         if (state != 0) {
-          ESP_LOGV(ESP_LOG_TAG, "Hum=%0.2f, Long_Avg=%0.2f, Short_Avg=%0.2f, Hum_High=%s, Hum_Low=%s, Vent_On_Min_Time=%s, Vent_On_Time=%0.0f",
-            hum, hum_long_avg, hum_short_avg, humidity_is_high ? "True" : "False", humidity_is_low ? "True" : "False", vent_on_min_time ? "True" : "False", on_time_seconds);
+          ESP_LOGV(ESP_LOG_TAG, "Hum=%0.2f, Long_Avg=%0.2f, Short_Avg=%0.2f, \
+          Hum_High=%s, Hum_Low=%s, Vent_On_Min_Time=%s, Vent_On_Time=%0.0f",
+            hum, hum_long_avg, hum_short_avg, 
+            humidity_is_high ? "True" : "False", 
+            humidity_is_low ? "True" : "False", 
+            vent_on_min_time ? "True" : "False", on_time_seconds);
         }

@@ -21,7 +21,7 @@ I settled on the following characteristics:
 * Sensirion SEN66 All-in-One (Package A)
   - Temperature
   - Humidity
-  - Particulate Matter (PM)
+  - Particulate Matter (PM) 
   - CO₂
   - Volatile Organic Compound (VOC)
   - Nitrogen Oxide (NOX)

@@ -5,6 +5,7 @@ ignore: |
   .github/
   enclosure/
   pcb/
+  .yamllint
 
 rules:
   document-start: disable

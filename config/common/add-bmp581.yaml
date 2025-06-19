@@ -12,3 +12,4 @@ sensor:
       oversampling: 16x 
       filters:
         - throttle_average: 60s
+        

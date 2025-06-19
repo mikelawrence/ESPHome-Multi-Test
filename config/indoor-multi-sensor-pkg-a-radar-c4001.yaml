@@ -68,7 +68,7 @@ external_components:
     components: [dfrobot_c4001, sen5x, bmp581]
 
 dashboard_import:
-  package_import_url: github://mikelawrence/ESPHome-Multi-Test/config/indoor-multi-sensor-pkg-a-radar-c4001.yaml@main
+  package_import_url: github://mikelawrence/ESPHome-Multi-Test/config/indoor-multi-sensor-pkg-a-radar-c4001.yaml@main # yamllint disable-line rule:line-length
   import_full_config: true
 
 esp32_ble_tracker:

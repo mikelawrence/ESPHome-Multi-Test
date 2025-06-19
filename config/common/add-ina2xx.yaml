@@ -33,3 +33,4 @@ sensor:
       name: "Energy"
       accuracy_decimals: 2
       state_class: total_increasing
+      

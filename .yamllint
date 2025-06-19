@@ -1,7 +1,10 @@
 ---
 extends: default
 
-ignore-from-file: .gitignore
+ignore: |
+  .github/
+  enclosure/
+  pcb/
 
 rules:
   document-start: disable

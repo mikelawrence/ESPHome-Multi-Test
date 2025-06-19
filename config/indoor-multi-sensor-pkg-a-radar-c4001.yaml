@@ -1,5 +1,5 @@
 substitutions:
-  name: "esphome-multi-test"   
+  name: "esphome-multi-test"
   friendly_name: "ESPHome Multi Test"
   # Settings
   use_pir_in_presence: "true"                     # When true the PIR is included in this sensor's presence.

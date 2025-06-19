@@ -1,7 +1,7 @@
 substitutions:
   name: "esphome-multi-test"
   friendly_name: "ESPHome Multi Test"
-  
+
   # Settings
   use_pir_in_presence: "true"
   # Status LED configuration

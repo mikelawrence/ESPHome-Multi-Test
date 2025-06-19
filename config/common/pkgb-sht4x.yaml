@@ -19,7 +19,7 @@ sensor:
             window_size: 5
             send_every: 1
     humidity:
-    # humidity before additional filter, hopefully more responsive for the humidity auto vent
+      # humidity before additional filter
       id: humidity_internal
       accuracy_decimals: 2
       filters:

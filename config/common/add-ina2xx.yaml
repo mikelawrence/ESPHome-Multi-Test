@@ -7,7 +7,7 @@ logger:
 time:
   - platform: homeassistant
     id: !extend homeassistant_time
-    on_time: 
+    on_time:
       - seconds: 0
         minutes: 0
         hours: 0
@@ -33,4 +33,3 @@ sensor:
       name: "Energy"
       accuracy_decimals: 2
       state_class: total_increasing
-      

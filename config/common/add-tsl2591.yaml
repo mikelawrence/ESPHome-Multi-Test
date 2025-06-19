@@ -27,8 +27,8 @@ sensor:
               return x;
             }
         - or:
-          - throttle_average: 60s
-          - delta: 20%
+            - throttle_average: 60s
+            - delta: 20%
       on_value:
         then:
           script.execute: update_status_led

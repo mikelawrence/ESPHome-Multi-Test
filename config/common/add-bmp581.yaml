@@ -9,7 +9,6 @@ sensor:
       name: "Pressure"
       id: pressure
       accuracy_decimals: 0
-      oversampling: 16x 
+      oversampling: 16x
       filters:
         - throttle_average: 60s
-        

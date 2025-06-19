@@ -48,7 +48,7 @@ sensor:
           float sensitivity = id(co_sensitivity_const);
           float cf = 1.0;
           float temp = round(id(${co_temp_id}).state);
-          
+
           if (isnan(temp)) {
             // temperature is not valid
             cf = id(co_temp_calibration)[23];
@@ -76,8 +76,8 @@ sensor:
           window_size: 180
           send_every: 1
       - or:
-        - throttle: 60s
-        - delta: 5.0
+          - throttle: 60s
+          - delta: 5.0
 
 text_sensor:
   - platform: template

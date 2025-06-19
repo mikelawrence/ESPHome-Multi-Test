@@ -9,7 +9,7 @@ esphome:
 
 power_supply:
   # enables power to the C4001 module
-  - id: 'c4001_enable'
+  - id: "c4001_enable"
     pin: GPIO15
     enable_on_boot: true
 
@@ -46,7 +46,7 @@ number:
       id: min_range
     trigger_range:
       name: Range Trigger
-      id: 
+      id:
     hold_sensitivity:
       name: Sensitivity Hold
       id: trigger_range

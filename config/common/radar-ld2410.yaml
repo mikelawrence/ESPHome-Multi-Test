@@ -26,7 +26,7 @@ ld2410:
 
 button:
   - platform: ld2410
-    ld2410_id : ld2410_radar
+    ld2410_id: ld2410_radar
     factory_reset:
       name: LD2410 Factory Reset
     restart:
@@ -36,7 +36,7 @@ button:
 
 number:
   - platform: ld2410
-    ld2410_id : ld2410_radar
+    ld2410_id: ld2410_radar
     timeout:
       name: Timeout
       id: timeout
@@ -94,7 +94,7 @@ number:
 
 select:
   - platform: ld2410
-    ld2410_id : ld2410_radar
+    ld2410_id: ld2410_radar
     distance_resolution:
       name: Distance Resolution
     # baud_rate:
@@ -106,7 +106,7 @@ select:
 
 switch:
   - platform: ld2410
-    ld2410_id : ld2410_radar
+    ld2410_id: ld2410_radar
     engineering_mode:
       name: LD2410 Engineering Mode
     bluetooth:
@@ -114,7 +114,7 @@ switch:
 
 binary_sensor:
   - platform: ld2410
-    ld2410_id : ld2410_radar
+    ld2410_id: ld2410_radar
     has_target:
       name: MMWave Presence
       id: presence_mmwwave
@@ -126,9 +126,9 @@ binary_sensor:
 
 sensor:
   - platform: ld2410
-    ld2410_id : ld2410_radar
+    ld2410_id: ld2410_radar
     moving_distance:
-      name : Moving Distance
+      name: Moving Distance
     still_distance:
       name: Still Distance
     moving_energy:

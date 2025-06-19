@@ -1,4 +1,3 @@
-
 i2s_audio:
   - id: speaker_i2s
     i2s_lrclk_pin: GPIO12

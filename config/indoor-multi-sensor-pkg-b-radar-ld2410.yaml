@@ -74,7 +74,7 @@ external_components:
     components: [sen5x, bmp581]
 
 dashboard_import:
-  package_import_url: github://mikelawrence/ESPHome-Multi-Test/config/indoor-multi-sensor-pkg-b-radar-ld2410.yaml@main # yamllint disable-line rule:line-length
+  package_import_url: github://mikelawrence/ESPHome-Multi-Test/config/indoor-multi-sensor-pkg-b-radar-ld2410.yaml@main
   import_full_config: true
 
 esp32_ble_tracker:

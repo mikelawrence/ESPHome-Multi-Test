@@ -72,7 +72,7 @@ select:
   - platform: ld2450
     ld2450_id: ld2450_radar
     # baud_rate:
-    #   name: LD2450 Baud rate
+      # name: LD2450 Baud rate
     zone_type:
       name: LD2450 Zone Type
 
@@ -134,11 +134,11 @@ sensor:
       distance:
         name: Target-1 Distance
       # speed:
-      #   name: Target-1 Speed
+        # name: Target-1 Speed
       # angle:
-      #   name: Target-1 Angle
+        # name: Target-1 Angle
       # resolution:
-      #   name: Target-1 Resolution
+        # name: Target-1 Resolution
     target_2:
       x:
         name: Target-2 X
@@ -147,11 +147,11 @@ sensor:
       distance:
         name: Target-2 Distance
       # speed:
-      #   name: Target-2 Speed
+        # name: Target-2 Speed
       # angle:
-      #   name: Target-2 Angle
+        # name: Target-2 Angle
       # resolution:
-      #   name: Target-2 Resolution
+        # name: Target-2 Resolution
     target_3:
       x:
         name: Target-3 X
@@ -160,11 +160,11 @@ sensor:
       distance:
         name: Target-3 Distance
       # speed:
-      #   name: Target-3 Speed
+        # name: Target-3 Speed
       # angle:
-      #   name: Target-3 Angle
+        # name: Target-3 Angle
       # resolution:
-      #   name: Target-3 Resolution
+        # name: Target-3 Resolution
     zone_1:
       target_count:
         name: Zone-1 Target Count
@@ -208,14 +208,14 @@ text_sensor:
     mac_address:
       name: LD2450 BT MAC
     # target_1:
-    #   direction:
-    #     name: Target-1 Direction
+      # direction:
+        # name: Target-1 Direction
     # target_2:
-    #   direction:
-    #     name: Target-2 Direction
+      # direction:
+        # name: Target-2 Direction
     # target_3:
-    #   direction:
-    #     name: Target-3 Direction
+      # direction:
+        # name: Target-3 Direction
   - platform: template
     name: "Radar Included"
     id: radar_included

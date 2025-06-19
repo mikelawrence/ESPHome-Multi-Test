@@ -31,7 +31,8 @@ psram:
 wifi:
   ap:
 
-# Fallback when WiFi configuration fails, required when allowing user to provision WiFi credentials using WiFi
+# Fallback when WiFi configuration fails
+# required when allowing user to provision WiFi credentials using WiFi
 captive_portal:
 
 # Allows user to provision WiFi credentials with Bluetooth using Improv standard
@@ -72,7 +73,8 @@ script:
     then:
       lambda: |-
         static bool last_state;
-        static float last_r, last_g, last_b, last_brightness = ${status_night_brightness};
+        static float last_r, last_g, last_b;
+        static float last_brightness = ${status_night_brightness};
         bool state;
         float r, g, b, brightness = last_brightness;
         if(last_brightness == ${status_day_brightness}) {
@@ -104,8 +106,10 @@ script:
             ESP_LOGD("status", "Status LED turned off");
           }
         } else {
-          if ((last_state == false) || (last_r != r) || (last_g != g) || (last_b != b) || (last_brightness != brightness)) {
-            id(led_status).turn_on().set_transition_length(0).set_rgb(r, g, b).set_brightness(brightness).perform();
+          if ((last_state == false) || (last_r != r) || (last_g != g) || 
+            (last_b != b) || (last_brightness != brightness)) {
+            id(led_status).turn_on().set_transition_length(0).
+              set_rgb(r, g, b).set_brightness(brightness).perform();
             ESP_LOGD("status", "Status LED turned on");
           }
         }
@@ -121,7 +125,8 @@ binary_sensor:
     id: presence
     device_class: presence
     lambda: |-
-      if(id(presence_mmwwave).state or (id(pir_enable).state && id(motion_pir).state)) {
+      if(id(presence_mmwwave).state or 
+        (id(pir_enable).state && id(motion_pir).state)) {
         return true;
       } else {
         return false;

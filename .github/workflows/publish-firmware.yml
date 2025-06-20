@@ -9,27 +9,30 @@ permissions:
   contents: write
 
 jobs:
-  build-pkg-a-radar-c4001:
-    name: Build Package A -  Radar C4001
+  build-devices:
+    name: Build Devices
     uses: esphome/workflows/.github/workflows/build.yml@main
     with:
-      files: config/indoor-multi-sensor-pkg-a-radar-c4001.yaml
+      files: |
+        config/indoor-multi-sensor-pkg-a-radar-c4001.yaml
+        config/indoor-multi-sensor-pkg-a-radar-ld2410.yaml
+        config/indoor-multi-sensor-pkg-a-radar-ld2450-mtmz.yaml
+        config/indoor-multi-sensor-pkg-b-radar-ld2450-stsz.yaml
       esphome-version: latest
-      combined-name: indoor-multi-sensor-pkg-a-radar-c4001
       release-summary: ${{ github.event.release.body }}
       release-url: ${{ github.event.release.html_url }}
       release-version: ${{ github.event.release.tag_name }}
 
-  build-pkg-a-radar-ld2410:
-    name: Build Package A -  Radar LD2410
-    uses: esphome/workflows/.github/workflows/build.yml@main
-    with:
-      files: config/indoor-multi-sensor-pkg-a-radar-ld2410.yaml
-      esphome-version: latest
-      combined-name: indoor-multi-sensor-pkg-a-radar-ld2410
-      release-summary: ${{ github.event.release.body }}
-      release-url: ${{ github.event.release.html_url }}
-      release-version: ${{ github.event.release.tag_name }}
+  # build-pkg-a-radar-ld2410:
+  #   name: Build Package A -  Radar LD2410
+  #   uses: esphome/workflows/.github/workflows/build.yml@main
+  #   with:
+  #     files: config/indoor-multi-sensor-pkg-a-radar-ld2410.yaml
+  #     esphome-version: latest
+  #     combined-name: indoor-multi-sensor-pkg-a-radar-ld2410
+  #     release-summary: ${{ github.event.release.body }}
+  #     release-url: ${{ github.event.release.html_url }}
+  #     release-version: ${{ github.event.release.tag_name }}
 
   # build-pkg-a-radar-ld2450-mtmz:
   #   name: Build Package A -  Radar LD2450 Multi-Target Multi-Zone
@@ -97,17 +100,22 @@ jobs:
   #     release-url: ${{ github.event.release.html_url }}
   #     release-version: ${{ github.event.release.tag_name }}
 
+  upload-to-r2:
+    if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
+    name: Upload to R2
+    needs:
+      - build-devices
+    uses: esphome/workflows/.github/workflows/upload-to-r2.yml@2025.4.0
+    with:
+      directory: bluetooth-proxy
+    secrets: inherit
+
   upload-to-release:
     name: Upload to Release
-    uses: esphome/workflows/.github/workflows/upload-to-gh-release.yml@main
+    if: github.event_name == 'release'
+    uses: esphome/workflows/.github/workflows/upload-to-gh-release.yml@2025.4.0
     needs:
-      - build-pkg-a-radar-c4001
-      # - build-pkg-a-radar-ld2410
-      # - build-pkg-a-radar-ld2450-mtmz
-      # - build-pkg-a-radar-ld2450-stsz
-      # - build-pkg-b-radar-c4001
-      # - build-pkg-b-radar-ld2410
-      # - build-pkg-b-radar-ld2450-mtmz
-      # - build-pkg-b-radar-ld2450-stsz
+      - build-devices
     with:
       version: ${{ github.event.release.tag_name }}
+

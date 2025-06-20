@@ -20,8 +20,13 @@ There is also an audio DAC and speaker for all sorts of applications.
 
 # Installation
 
-You can use the button below to install the pre-built firmware directly to your device via USB from the browser.
+You can use the buttons below to install the pre-built firmware directly to your device via USB from the browser.
 
-<esp-web-install-button manifest="firmware/project-template.manifest.json"></esp-web-install-button>
+| Radar | Sensor Pkg A | Sensor Pkg B |
+|---|---|---|
+| C4001 | <esp-web-install-button manifest="firmware/sensor-pkg-a-c4001.manifest.json"></esp-web-install-button> | <esp-web-install-button manifest="firmware/sensor-pkg-b-c4001.manifest.json"></esp-web-install-button> | 
+| LD2410 | <esp-web-install-button manifest="firmware/sensor-pkg-a-ld2410.manifest.json"></esp-web-install-button> | <esp-web-install-button manifest="firmware/sensor-pkg-b-ld2410.manifest.json"></esp-web-install-button> | 
+| LD2450-STSZ | <esp-web-install-button manifest="firmware/sensor-pkg-a-ld2450-stsz.manifest.json"></esp-web-install-button> | <esp-web-install-button manifest="firmware/sensor-pkg-b-ld2450-stsz.manifest.json"></esp-web-install-button> | 
+| LD2450-MTMZ | <esp-web-install-button manifest="firmware/sensor-pkg-a-ld2450-mtmz.manifest.json"></esp-web-install-button> | <esp-web-install-button manifest="firmware/sensor-pkg-b-ld2450-mtmz.manifest.json"></esp-web-install-button> | 
 
 <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>

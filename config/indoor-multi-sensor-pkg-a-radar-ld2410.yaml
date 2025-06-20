@@ -1,6 +1,6 @@
 substitutions:
-  name: "indoor-multi-sensor-pkg-a-radar-ld2410"
-  friendly_name: "Indoor Multi-Sensor Pkg A Radar LD2410"
+  name: "sensor-pkg-a-ld2410"
+  friendly_name: "Sensor Pkg A Radar LD2410"
 
   # Settings
   use_pir_in_presence: "true"

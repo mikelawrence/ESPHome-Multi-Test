@@ -1,6 +1,22 @@
 # About
 
-Add some information about your project here.
+ESPHome Indoor Multi-Sensor at it's heart is a presence sensor utilizing both mmWave and PIR sensors. 
+
+But it also supports many other sensors including the kitchen sink:
+
+* Carbon Monoxide (CO)
+* Carbon Dioxide (CO₂)
+* Temperature
+* Humidity
+* Particulate Matter (PM) 
+* Volatile Organic Compounds (VOC)
+* Nitrogen Oxides (NOX)
+* Pressure
+* Light
+* Sound level
+* Power and Energy Monitor
+
+There is also an audio DAC and speaker for all sorts of applications.
 
 # Installation
 

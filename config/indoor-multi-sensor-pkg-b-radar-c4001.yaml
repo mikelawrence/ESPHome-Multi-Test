@@ -1,6 +1,6 @@
 substitutions:
-  name: "esphome-multi-test"
-  friendly_name: "ESPHome Multi Test"
+  name: "sensor-pkg-b-c4001"
+  friendly_name: "Sensor Pkg B Radar C4001"
 
   # Settings
   use_pir_in_presence: "true"

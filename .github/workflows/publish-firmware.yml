@@ -17,6 +17,10 @@ jobs:
         config/indoor-multi-sensor-pkg-a-radar-c4001.yaml
         config/indoor-multi-sensor-pkg-a-radar-ld2410.yaml
         config/indoor-multi-sensor-pkg-a-radar-ld2450-mtmz.yaml
+        config/indoor-multi-sensor-pkg-a-radar-ld2450-stsz.yaml
+        config/indoor-multi-sensor-pkg-b-radar-c4001.yaml
+        config/indoor-multi-sensor-pkg-b-radar-ld2410.yaml
+        config/indoor-multi-sensor-pkg-b-radar-ld2450-mtmz.yaml
         config/indoor-multi-sensor-pkg-b-radar-ld2450-stsz.yaml
       esphome-version: latest
       release-summary: ${{ github.event.release.body }}

@@ -73,8 +73,7 @@ script:
     then:
       lambda: |-
         static bool last_state;
-        static float last_r, last_g, last_b;
-        static float last_brightness = ${status_night_brightness};
+        static float last_r, last_g, last_b, last_brightness = ${status_night_brightness};
         bool state;
         float r, g, b, brightness = last_brightness;
         if(last_brightness == ${status_day_brightness}) {
@@ -107,7 +106,7 @@ script:
           }
         } else {
           if ((last_state == false) || (last_r != r) || (last_g != g) ||
-            (last_b != b) || (last_brightness != brightness)) {
+              (last_b != b) || (last_brightness != brightness)) {
             id(led_status).turn_on().set_transition_length(0).
               set_rgb(r, g, b).set_brightness(brightness).perform();
             ESP_LOGD("status", "Status LED turned on");

@@ -38,7 +38,7 @@ I settled on the following characteristics:
 
 ## Status
 * **Rev -** Has been fabricated and tested. I had JLCPCB fabricate the boards and I self assembled using a Home-Brew reflow oven by [Whizoo Controleo3](https://whizoo.com/). All circuits have been tested and found to be operational. 
-* **Rev A** There was an issue with signal integrity on the I2C bus when communicating with the SEN66. To fix the problem I added stronger pullups and a new and dedicated I2C bus to the SEN66. Thus Rev A was born. I have not fabricated Rev A boards since I still have 6 Rev - boards left but the changes are minor and should be fine. Please let me know if you built Rev A and how it went. 
+* **Rev A** There was an issue with signal integrity on the I2C bus when communicating with the SEN66. To fix the problem I added stronger pullups and a new and dedicated I2C bus to the SEN66. Thus Rev A was born. I have not fabricated Rev A boards since I still have 6 Rev - boards left but the changes are minor and should be fine. Please let me know if you built Rev A and how it went.
 
 ## Design Decisions
 ### ESP32 and ESPHome

@@ -1,6 +1,6 @@
 substitutions:
-  name: "esphome-multi-test"
-  friendly_name: "ESPHome Multi Test"
+  name: "indoor-multi-sensor-pkg-a-radar-ld2450-stsz"
+  friendly_name: "Indoor Multi-Sensor Pkg A Radar LD2450 STSZ"
 
   # Settings
   use_pir_in_presence: "true"

@@ -1,6 +1,6 @@
 substitutions:
-  name: "sensor-pkg-a-ld2450-stsz"
-  friendly_name: "Sensor Pkg A Radar LD2450 STSZ"
+  name: "sensor-pkg-b-ld2450-mtmz"
+  friendly_name: "Sensor Pkg B Radar LD2450 MTMZ"
 
   # Settings
   use_pir_in_presence: "true"
@@ -15,10 +15,14 @@ substitutions:
   co_sensitivity: "2.000e-9"
   co_manufacture_date: "01/01/1999"
   co_serial_number: "111111111111111111"
-  # SEN6X Configuration
-  sen6x_temperature_offset: "0.0"
-  sen6x_humidity_offset: "0.0"
-  sen6x_output_rate: "60s"
+  # SHT4x Configuration
+  sht4x_temperature_offset: "-4.0"
+  sht4x_humidity_offset: "+14.5"
+  sht4x_output_rate: "60s"
+  # SCD4X Configuration
+  scd4x_output_rate: "60s"
+  # SGP4X Configuration
+  sgp4x_output_rate: "60s"
   # INA2XX Configuration
   INA2XX_output_rate: "60s"
   # Automatically controlled Vent
@@ -35,11 +39,13 @@ packages:
   # COMMON
   common: !include common/common.yaml
 
-  # SENSORS - PACKAGE A - Sensirion SEN66
-  sen6x_pkga: !include common/pkga-sen6x.yaml
+  # SENSORS - PACKAGE B - Sensirion SHT4X, SCD4X and SGP4X
+  sht4x_pkgb: !include common/pkgb-sht4x.yaml
+  scd4x_pkgb: !include common/pkgb-scd4x.yaml
+  sgp4x_pkgb: !include common/pkgb-sgp4x.yaml
 
-  # MMWAVE SENSOR - Hi-Link LD2450 - Single-Target Single-Zone
-  ld2450_radar: !include common/radar-ld2450ml-stsz.yaml
+  # MMWAVE SENSOR - Hi-Link LD2450 - Multi-Target Multi-Zone
+  ld2450_radar: !include common/radar-ld2450ml-mtmz.yaml
 
   # ADDITIONAL SENSORS
   # Carbon Dioxide (CO) - Figaro TGS5141 sensor
@@ -56,8 +62,8 @@ packages:
   microphone_add: !include common/add-microphone.yaml
 
   # FEATURES
-  # SEN6X Pressure Compensation
-  sen6x_pres_comp_feat: !include common/feat-sen6x-press-comp.yaml
+  # SCD4X Pressure Compensation
+  scd4x_pres_comp_feat: !include common/feat-scd4x-press-comp.yaml
   # Automatic Vent - Use humidity and CO₂ control a bathroom vent
   # auto_vent_feat:       !include common/feat-auto-vent.yaml
 
@@ -68,7 +74,7 @@ external_components:
     components: [ld2450, sen5x, bmp581]
 
 dashboard_import:
-  package_import_url: github://mikelawrence/ESPHome-Multi-Test/config/indoor-multi-sensor-pkg-a-radar-ld2450-stsz.yaml@main
+  package_import_url: github://mikelawrence/ESPHome-Multi-Test/config/pkg-b-radar-ld2450-mtmz.yaml@main
   import_full_config: true
 
 esp32_ble_tracker:

@@ -1,6 +1,6 @@
 substitutions:
-  name: "sensor-pkg-a-ld2410"
-  friendly_name: "Sensor Pkg A Radar LD2410"
+  name: "sensor-pkg-a-ld2450-stsz"
+  friendly_name: "Sensor Pkg A Radar LD2450 STSZ"
 
   # Settings
   use_pir_in_presence: "true"
@@ -38,8 +38,8 @@ packages:
   # SENSORS - PACKAGE A - Sensirion SEN66
   sen6x_pkga: !include common/pkga-sen6x.yaml
 
-  # MMWAVE SENSOR - Hi-Link LD2410
-  ld2410_radar: !include common/radar-ld2410.yaml
+  # MMWAVE SENSOR - Hi-Link LD2450 - Single-Target Single-Zone
+  ld2450_radar: !include common/radar-ld2450ml-stsz.yaml
 
   # ADDITIONAL SENSORS
   # Carbon Dioxide (CO) - Figaro TGS5141 sensor
@@ -65,10 +65,10 @@ api:
 
 external_components:
   - source: github://mikelawrence/esphome-components@main
-    components: [sen5x, bmp581]
+    components: [ld2450, sen5x, bmp581]
 
 dashboard_import:
-  package_import_url: github://mikelawrence/ESPHome-Multi-Test/config/indoor-multi-sensor-pkg-a-radar-ld2410.yaml@main
+  package_import_url: github://mikelawrence/ESPHome-Multi-Test/config/pkg-a-radar-ld2450-stsz.yaml@main
   import_full_config: true
 
 esp32_ble_tracker:

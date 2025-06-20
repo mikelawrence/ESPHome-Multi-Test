@@ -1,11 +1,11 @@
 substitutions:
-  name: "sensor-pkg-b-ld2450-stsz"
-  friendly_name: "ESensor Pkg B Radar LD2450 STSZ"
+  name: "sensor-pkg-b-ld2410"
+  friendly_name: "Sensor Pkg B Radar LD2410"
 
   # Settings
-  use_pir_in_presence: "true"
+  use_pir_in_presence: "true"           # test comment
   # Status LED configuration
-  status_day_brightness: "0.5"
+  status_day_brightness: "0.5"          # test comment 2
   status_night_brightness: "0.20"
   status_daytime_lux: "12.0"
   status_nighttime_lux: "7.0"
@@ -44,17 +44,17 @@ packages:
   scd4x_pkgb: !include common/pkgb-scd4x.yaml
   sgp4x_pkgb: !include common/pkgb-sgp4x.yaml
 
-  # MMWAVE SENSOR - Hi-Link LD2450 - Single-Target Single-Zone
-  ld2450_radar: !include common/radar-ld2450ml-stsz.yaml
+  # MMWAVE SENSOR - Hi-Link LD2410 - Built-In ESPHome component
+  ld2410_radar: !include common/radar-ld2410.yaml
 
   # ADDITIONAL SENSORS
-  # Carbon Dioxide (CO) - Uses Figaro TGS5141 sensor
+  # Carbon Dioxide (CO) - Figaro TGS5141 sensor
   co_add: !include common/add-co.yaml
-  # Energy Usage - Uses INA2XX sensor to measure Voltage, Power and Energy Usage
+  # Energy Usage - INA2XX sensor to measure Voltage, Power and Energy Usage
   ina2xx_add: !include common/add-ina2xx.yaml
-  # Light Level - Uses TSL2591 sensor
+  # Light Level - TSL2591 sensor
   tsl2591_add: !include common/add-tsl2591.yaml
-  # Barometric Pressure - Uses BMP581 sensor
+  # Barometric Pressure - BMP581 sensor
   bmp581_add: !include common/add-bmp581.yaml
   # Speaker - Adds audio output and Media Player
   speaker_add: !include common/add-speaker.yaml
@@ -71,10 +71,10 @@ api:
 
 external_components:
   - source: github://mikelawrence/esphome-components@main
-    components: [ld2450, sen5x, bmp581]
+    components: [sen5x, bmp581]
 
 dashboard_import:
-  package_import_url: github://mikelawrence/ESPHome-Multi-Test/config/indoor-multi-sensor-pkg-b-radar-ld2450-stsz.yaml@main
+  package_import_url: github://mikelawrence/ESPHome-Multi-Test/config/pkg-b-radar-ld2410.yaml@main
   import_full_config: true
 
 esp32_ble_tracker:

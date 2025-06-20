@@ -1,11 +1,11 @@
 substitutions:
-  name: "sensor-pkg-b-ld2410"
-  friendly_name: "Sensor Pkg B Radar LD2410"
+  name: "sensor-pkg-b-c4001"
+  friendly_name: "Sensor Pkg B Radar C4001"
 
   # Settings
-  use_pir_in_presence: "true"           # test comment
+  use_pir_in_presence: "true"
   # Status LED configuration
-  status_day_brightness: "0.5"          # test comment 2
+  status_day_brightness: "0.5"
   status_night_brightness: "0.20"
   status_daytime_lux: "12.0"
   status_nighttime_lux: "7.0"
@@ -44,8 +44,8 @@ packages:
   scd4x_pkgb: !include common/pkgb-scd4x.yaml
   sgp4x_pkgb: !include common/pkgb-sgp4x.yaml
 
-  # MMWAVE SENSOR - Hi-Link LD2410 - Built-In ESPHome component
-  ld2410_radar: !include common/radar-ld2410.yaml
+  # MMWAVE SENSOR - DFRobot C4001 (SENS0609 or SEN0610)
+  c4001_radar: !include common/radar-c4001.yaml
 
   # ADDITIONAL SENSORS
   # Carbon Dioxide (CO) - Figaro TGS5141 sensor
@@ -71,10 +71,10 @@ api:
 
 external_components:
   - source: github://mikelawrence/esphome-components@main
-    components: [sen5x, bmp581]
+    components: [dfrobot_c4001, sen5x, bmp581]
 
 dashboard_import:
-  package_import_url: github://mikelawrence/ESPHome-Multi-Test/config/indoor-multi-sensor-pkg-b-radar-ld2410.yaml@main
+  package_import_url: github://mikelawrence/ESPHome-Multi-Test/config/pkg-b-radar-c4001.yaml@main
   import_full_config: true
 
 esp32_ble_tracker:

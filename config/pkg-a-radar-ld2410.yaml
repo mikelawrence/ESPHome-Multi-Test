@@ -1,6 +1,6 @@
 substitutions:
-  name: "sensor-pkg-a-c4001"
-  friendly_name: "Sensor Pkg A Radar C4001"
+  name: "sensor-pkg-a-ld2410"
+  friendly_name: "Sensor Pkg A Radar LD2410"
 
   # Settings
   use_pir_in_presence: "true"
@@ -19,7 +19,6 @@ substitutions:
   sen6x_temperature_offset: "0.0"
   sen6x_humidity_offset: "0.0"
   sen6x_output_rate: "60s"
-  sen6x_calibration_date: "01/01/1999"
   # INA2XX Configuration
   INA2XX_output_rate: "60s"
   # Automatically controlled Vent
@@ -39,8 +38,8 @@ packages:
   # SENSORS - PACKAGE A - Sensirion SEN66
   sen6x_pkga: !include common/pkga-sen6x.yaml
 
-  # MMWAVE SENSOR - DFRobot C4001 (SENS0609 or SEN0610) - Mike Custom Component
-  c4001_radar: !include common/radar-c4001.yaml
+  # MMWAVE SENSOR - Hi-Link LD2410
+  ld2410_radar: !include common/radar-ld2410.yaml
 
   # ADDITIONAL SENSORS
   # Carbon Dioxide (CO) - Figaro TGS5141 sensor
@@ -57,7 +56,7 @@ packages:
   microphone_add: !include common/add-microphone.yaml
 
   # FEATURES
-  # SEN6X Pressure Compensation - Adds pressure compensation to SEN6X
+  # SEN6X Pressure Compensation
   sen6x_pres_comp_feat: !include common/feat-sen6x-press-comp.yaml
   # Automatic Vent - Use humidity and CO₂ control a bathroom vent
   # auto_vent_feat:       !include common/feat-auto-vent.yaml
@@ -66,10 +65,10 @@ api:
 
 external_components:
   - source: github://mikelawrence/esphome-components@main
-    components: [dfrobot_c4001, sen5x, bmp581]
+    components: [sen5x, bmp581]
 
 dashboard_import:
-  package_import_url: github://mikelawrence/ESPHome-Multi-Test/config/indoor-multi-sensor-pkg-a-radar-c4001.yaml@main
+  package_import_url: github://mikelawrence/ESPHome-Multi-Test/config/pkg-a-radar-ld2410.yaml@main
   import_full_config: true
 
 esp32_ble_tracker:

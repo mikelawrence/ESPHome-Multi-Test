@@ -101,8 +101,8 @@ jobs:
   #     release-version: ${{ github.event.release.tag_name }}
 
   upload-to-r2:
-    if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
     name: Upload to R2
+    if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
     needs:
       - build-devices
     uses: esphome/workflows/.github/workflows/upload-to-r2.yml@2025.4.0

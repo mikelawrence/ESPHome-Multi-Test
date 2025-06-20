@@ -22,10 +22,14 @@ jobs:
       matrix:
         #### Modify below here to match your project ####
         file:
-          - project-template-esp32
-          - project-template-esp32-c3
-          - project-template-esp32-c6
-          - project-template-esp32-s3
+          - pkg-a-radar-c4001
+          - pkg-a-radar-ld2410
+          - pkg-a-radar-ld2450-mtmz
+          - pkg-a-radar-ld2450-stsz
+          - pkg-b-radar-c4001
+          - pkg-b-radar-ld2410
+          - pkg-b-radar-ld2450-mtmz
+          - pkg-b-radar-ld2450-stsz
         #### Modify above here to match your project ####
 
         esphome-version:

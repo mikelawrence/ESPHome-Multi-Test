@@ -3,16 +3,16 @@ name: Publish Firmware
 on:
   release:
     types: [published]
-  # push:
 
 permissions:
   contents: write
 
 jobs:
-  build-devices:
-    name: Build Devices
-    uses: esphome/workflows/.github/workflows/build.yml@main
+  build-firmware:
+    name: Build Firmware
+    uses: esphome/workflows/.github/workflows/build.yml@2025.4.0
     with:
+      #### Modify below here to match your project ####
       files: |
         config/pkg-a-radar-c4001.yaml
         config/pkg-a-radar-ld2410.yaml
@@ -23,16 +23,17 @@ jobs:
         config/pkg-b-radar-ld2450-mtmz.yaml
         config/pkg-b-radar-ld2450-stsz.yaml
       esphome-version: latest
+      # combined-name: project-template
+      #### Modify above here to match your project ####
+
       release-summary: ${{ github.event.release.body }}
       release-url: ${{ github.event.release.html_url }}
       release-version: ${{ github.event.release.tag_name }}
 
   upload-to-release:
     name: Upload to Release
-    if: github.event_name == 'release'
     uses: esphome/workflows/.github/workflows/upload-to-gh-release.yml@2025.4.0
     needs:
-      - build-devices
+      - build-firmware
     with:
       version: ${{ github.event.release.tag_name }}
-

@@ -102,6 +102,7 @@ api:
 # OTA is required for Over-the-Air updating
 ota:
   - platform: esphome
+    id: ota_esphome
 
 wifi:
   # Set up a wifi access point using the device name above
@@ -113,4 +114,3 @@ esp32_ble_tracker:
 
 bluetooth_proxy:
   active: true
-  

@@ -9,6 +9,21 @@ esphome:
     name: Mike Lawrence.Indoor Multi-Sensor
     version: dev # This will be replaced by the github workflows with the `release` version
 
+# Allow HTTP OTA updates
+ota:
+  - platform: http_request
+    id: ota_http_request
+
+# Managed Updates via HTTP request
+update:
+  - platform: http_request
+    id: update_http_request
+    name: Firmware
+    source: https://mikelawrence.github.io/ESPHome-Multi-Test/firmware/pkg-b-ld2410-esp32-s3.manifest.json
+
+# HTTP Request component
+http_request:
+
 # This should point to the public location of the yaml file that will be adopted.
 # In this case it is the core yaml file that does not contain the extra things
 # that are provided by this factory yaml file as the user does not need these once adopted.

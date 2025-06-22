@@ -19,7 +19,7 @@ update:
   - platform: http_request
     id: update_http_request
     name: Firmware
-    source: https://mikelawrence.github.io/ESPHome-Multi-Test/firmware/sensor-pkg-a-ld2410-esp32-s3.manifest.json
+    source: https://mikelawrence.github.io/ESPHome-Multi-Test/firmware/sensor-pkg-a-ld2410.manifest.json
 
 # HTTP Request component
 http_request:

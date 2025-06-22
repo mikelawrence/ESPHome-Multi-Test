@@ -70,7 +70,7 @@ packages:
 # Add custom components
 external_components:
   - source: github://mikelawrence/esphome-components@main
-    components: [ld2410, sen5x, bmp581]
+    components: [sen5x, bmp581]
 
 esphome:
   name: "sensor-pkg-b-ld2410"

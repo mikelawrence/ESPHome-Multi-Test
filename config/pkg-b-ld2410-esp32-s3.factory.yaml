@@ -1,6 +1,6 @@
 packages:
   # Include all of the core configuration
-  core: !include pkg-b-ld2410.yaml
+  core: !include pkg-b-ld2410-esp32-s3.yaml
 
 esphome:
   # This will allow for project identification,

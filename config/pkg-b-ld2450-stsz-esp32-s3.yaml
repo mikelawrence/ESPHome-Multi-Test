@@ -86,7 +86,7 @@ esp32:
   framework:
     type: esp-idf
 
-# This PSRAM can actually support faster than 80MHz 
+# This PSRAM can actually support faster than 80MHz
 psram:
   mode: octal
   speed: 80MHz

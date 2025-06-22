@@ -1,6 +1,6 @@
 substitutions:
-  name: "sensor-pkg-a-ld2450-mtmz"
-  friendly_name: "Sensor Pkg A Radar LD2450 MTMZ"
+  name: "sensor-pkg-b-ld2450-stsz"
+  friendly_name: "ESensor Pkg B Radar LD2450 STSZ"
 
   # Settings
   use_pir_in_presence: "true"
@@ -15,10 +15,14 @@ substitutions:
   co_sensitivity: "2.000e-9"
   co_manufacture_date: "01/01/1999"
   co_serial_number: "111111111111111111"
-  # SEN6X Configuration
-  sen6x_temperature_offset: "0.0"
-  sen6x_humidity_offset: "0.0"
-  sen6x_output_rate: "60s"
+  # SHT4x Configuration
+  sht4x_temperature_offset: "-4.0"
+  sht4x_humidity_offset: "+14.5"
+  sht4x_output_rate: "60s"
+  # SCD4X Configuration
+  scd4x_output_rate: "60s"
+  # SGP4X Configuration
+  sgp4x_output_rate: "60s"
   # INA2XX Configuration
   INA2XX_output_rate: "60s"
   # Automatically controlled Vent
@@ -35,11 +39,13 @@ packages:
   # COMMON
   common: !include common/common.yaml
 
-  # SENSORS - PACKAGE A - Sensirion SEN66
-  sen6x_pkga: !include common/pkga-sen6x.yaml
+  # SENSORS - PACKAGE B - Sensirion SHT4X, SCD4X and SGP4X
+  sht4x_pkgb: !include common/pkgb-sht4x.yaml
+  scd4x_pkgb: !include common/pkgb-scd4x.yaml
+  sgp4x_pkgb: !include common/pkgb-sgp4x.yaml
 
-  # MMWAVE SENSOR - Hi-Link LD2450 - Multi-Target Multi-Zone
-  ld2450_radar: !include common/radar-ld2450ml-mtmz.yaml
+  # MMWAVE SENSOR - Hi-Link LD2450 - Single-Target Single-Zone
+  ld2450_radar: !include common/radar-ld2450ml-stsz.yaml
 
   # ADDITIONAL SENSORS
   # Carbon Dioxide (CO) - Figaro TGS5141 sensor
@@ -56,20 +62,50 @@ packages:
   microphone_add: !include common/add-microphone.yaml
 
   # FEATURES
-  # SEN6X Pressure Compensation
-  sen6x_pres_comp_feat: !include common/feat-sen6x-press-comp.yaml
+  # SCD4X Pressure Compensation
+  scd4x_pres_comp_feat: !include common/feat-scd4x-press-comp.yaml
   # Automatic Vent - Use humidity and CO₂ control a bathroom vent
   # auto_vent_feat:       !include common/feat-auto-vent.yaml
 
-api:
-
+# Add custom components
 external_components:
   - source: github://mikelawrence/esphome-components@main
     components: [ld2450, sen5x, bmp581]
 
-dashboard_import:
-  package_import_url: github://mikelawrence/ESPHome-Multi-Test/config/pkg-a-radar-ld2450-mtmz.yaml@main
-  import_full_config: true
+esphome:
+  name: "sensor-pkg-b-ld2450-stsz"
+  friendly_name: "Sensor Pkg B LD2450 STSZ"
+  name_add_mac_suffix: true
+
+# ESP32-S3-WROOM-2-N32R16V
+esp32:
+  board: esp32s3box
+  variant: ESP32S3
+  flash_size: 32MB
+  cpu_frequency: 240MHz
+  framework:
+    type: esp-idf
+
+# This PSRAM can actually support faster than 80MHz 
+psram:
+  mode: octal
+  speed: 80MHz
+
+# To be able to get logs from the device via serial and api.
+logger:
+  id: logger_common
+  level: DEBUG
+
+# API is a requirement of the dashboard import.
+api:
+
+# OTA is required for Over-the-Air updating
+ota:
+  - platform: esphome
+
+wifi:
+  # Set up a wifi access point using the device name above
+  ap:
 
 esp32_ble_tracker:
   scan_parameters:

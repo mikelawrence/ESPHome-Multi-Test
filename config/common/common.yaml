@@ -1,10 +1,4 @@
 esphome:
-  name: ${name}
-  friendly_name: ${friendly_name}
-  name_add_mac_suffix: true
-  project:
-    name: Mike Lawrence.Indoor Multi-Sensor
-    version: 0.1.5
   on_boot:
     - priority: -100
       then:
@@ -14,18 +8,6 @@ esphome:
       then:
         - light.turn_off:
             id: led_status
-
-esp32:
-  board: esp32s3box
-  variant: ESP32S3
-  flash_size: 32MB
-  cpu_frequency: 240MHz
-  framework:
-    type: esp-idf
-
-psram:
-  mode: octal
-  speed: 80MHz
 
 # WiFI AP, required when allowing user to provision WiFi credentials
 wifi:
@@ -48,10 +30,6 @@ web_server:
 ota:
   platform: esphome
   id: ota_esphome
-
-logger:
-  id: logger_common
-  level: DEBUG
 
 debug:
   update_interval: 60s

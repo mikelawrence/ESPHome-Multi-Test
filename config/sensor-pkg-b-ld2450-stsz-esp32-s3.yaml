@@ -1,71 +1,71 @@
 substitutions:
-  name: "sensor-pkg-b-ld2450-stsz"
-  friendly_name: "ESensor Pkg B Radar LD2450 STSZ"
+  name:           "sensor-pkg-b-ld2450-stsz"
+  friendly_name:  "Indoor Multi-Sensor Pkg B Radar LD2450 STSZ"
 
   # Settings
-  use_pir_in_presence: "true"
+  use_pir_in_presence:      "true"
   # Status LED configuration
-  status_day_brightness: "0.5"
-  status_night_brightness: "0.20"
-  status_daytime_lux: "12.0"
-  status_nighttime_lux: "7.0"
+  status_day_brightness:    "0.5"
+  status_night_brightness:  "0.20"
+  status_daytime_lux:       "12.0"
+  status_nighttime_lux:     "7.0"
   # CO configuration
-  co_temp_id: "temperature"
-  co_offset: "0.0"
-  co_sensitivity: "2.000e-9"
-  co_manufacture_date: "01/01/1999"
-  co_serial_number: "111111111111111111"
+  co_temp_id:               "temperature"
+  co_offset:                "0.0"
+  co_sensitivity:           "2.000e-9"
+  co_manufacture_date:      "01/01/1999"
+  co_serial_number:         "111111111111111111"
   # SHT4x Configuration
   sht4x_temperature_offset: "-4.0"
-  sht4x_humidity_offset: "+14.5"
-  sht4x_output_rate: "60s"
+  sht4x_humidity_offset:    "+14.5"
+  sht4x_output_rate:        "60s"
   # SCD4X Configuration
-  scd4x_output_rate: "60s"
+  scd4x_output_rate:        "60s"
   # SGP4X Configuration
-  sgp4x_output_rate: "60s"
+  sgp4x_output_rate:        "60s"
   # INA2XX Configuration
-  INA2XX_output_rate: "60s"
+  INA2XX_output_rate:       "60s"
   # Automatically controlled Vent
-  vent_ha_entity: fan.vent_id
-  vent_use_humidity: "true"
-  vent_use_co2: "true"
-  vent_min_on_time: "15"
-  vent_hum_on_trigger: "10.0"
-  vent_hum_off_trigger: "2.5"
-  vent_co2_on_trigger: "1100"
-  vent_co2_off_trigger: "900"
+  vent_ha_entity:           fan.vent_id
+  vent_use_humidity:        "true"
+  vent_use_co2:             "true"
+  vent_min_on_time:         "15"
+  vent_hum_on_trigger:      "10.0"
+  vent_hum_off_trigger:     "2.5"
+  vent_co2_on_trigger:      "1100"
+  vent_co2_off_trigger:     "900"
 
 packages:
   # COMMON
-  common: !include common/common.yaml
+  common:                   !include github://mikelawrence/ESPHome-Multi-Test/config/common/common.yaml
 
   # SENSORS - PACKAGE B - Sensirion SHT4X, SCD4X and SGP4X
-  sht4x_pkgb: !include common/pkgb-sht4x.yaml
-  scd4x_pkgb: !include common/pkgb-scd4x.yaml
-  sgp4x_pkgb: !include common/pkgb-sgp4x.yaml
+  sht4x_pkgb:               !include github://mikelawrence/ESPHome-Multi-Test/config/common/pkgb-sht4x.yaml
+  scd4x_pkgb:               !include github://mikelawrence/ESPHome-Multi-Test/config/common/pkgb-scd4x.yaml
+  sgp4x_pkgb:               !include github://mikelawrence/ESPHome-Multi-Test/config/common/pkgb-sgp4x.yaml
 
   # MMWAVE SENSOR - Hi-Link LD2450 - Single-Target Single-Zone
-  ld2450_radar: !include common/radar-ld2450ml-stsz.yaml
+  ld2450_radar:             !include github://mikelawrence/ESPHome-Multi-Test/config/common/radar-ld2450ml-stsz.yaml
 
   # ADDITIONAL SENSORS
   # Carbon Dioxide (CO) - Figaro TGS5141 sensor
-  co_add: !include common/add-co.yaml
+  co_add:                   !include github://mikelawrence/ESPHome-Multi-Test/config/common/add-co.yaml
   # Energy Usage - INA2XX sensor to measure Voltage, Power and Energy Usage
-  ina2xx_add: !include common/add-ina2xx.yaml
+  ina2xx_add:               !include github://mikelawrence/ESPHome-Multi-Test/config/common/add-ina2xx.yaml
   # Light Level - TSL2591 sensor
-  tsl2591_add: !include common/add-tsl2591.yaml
+  tsl2591_add:              !include github://mikelawrence/ESPHome-Multi-Test/config/common/add-tsl2591.yaml
   # Barometric Pressure - BMP581 sensor
-  bmp581_add: !include common/add-bmp581.yaml
+  bmp581_add:               !include github://mikelawrence/ESPHome-Multi-Test/config/common/add-bmp581.yaml
   # Speaker - Adds audio output and Media Player
-  speaker_add: !include common/add-speaker.yaml
+  speaker_add:              !include github://mikelawrence/ESPHome-Multi-Test/config/common/add-speaker.yaml
   # Microphone - Adds Sound Level meter
-  microphone_add: !include common/add-microphone.yaml
+  microphone_add:           !include github://mikelawrence/ESPHome-Multi-Test/config/common/add-microphone.yaml
 
   # FEATURES
   # SCD4X Pressure Compensation
-  scd4x_pres_comp_feat: !include common/feat-scd4x-press-comp.yaml
+  scd4x_pres_comp_feat:     !include github://mikelawrence/ESPHome-Multi-Test/config/common/feat-scd4x-press-comp.yaml
   # Automatic Vent - Use humidity and CO₂ control a bathroom vent
-  # auto_vent_feat:       !include common/feat-auto-vent.yaml
+  # auto_vent_feat:           !include github://mikelawrence/ESPHome-Multi-Test/config/common/feat-auto-vent.yaml
 
 # Add custom components
 external_components:
@@ -75,7 +75,7 @@ external_components:
 esphome:
   name: "sensor-pkg-b-ld2450-stsz"
   friendly_name: "Sensor Pkg B LD2450 STSZ"
-  name_add_mac_suffix: true
+  name_add_mac_suffix: false
 
 # ESP32-S3-WROOM-2-N32R16V
 esp32:

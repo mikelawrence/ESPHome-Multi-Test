@@ -1,4 +1,4 @@
-# Adds CO sensor using the Figaro  digital light sensor
+# Adds CO sensor using the Figaro TGS5141
 esphome:
   on_boot:
     then:

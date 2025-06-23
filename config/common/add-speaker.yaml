@@ -1,3 +1,4 @@
+# Adds DAC and Speaker
 i2s_audio:
   - id: speaker_i2s
     i2s_lrclk_pin: GPIO12
@@ -15,7 +16,7 @@ media_player:
       num_channels: 1
     files:
       - id: co_alarm_sound
-        file: common/media/CO-alarm-message.mp3
+        file: github://mikelawrence/ESPHome-Multi-Test/config/common/media/CO-alarm-message.mp3
 
 power_supply:
   - id: dac_enable

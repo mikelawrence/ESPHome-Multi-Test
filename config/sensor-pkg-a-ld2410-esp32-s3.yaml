@@ -70,7 +70,6 @@ external_components:
 esphome:
   name: "sensor-pkg-a-ld2410"
   friendly_name: "Sensor Pkg A LD2410"
-  name_add_mac_suffix: false
 
 # ESP32-S3-WROOM-2-N32R16V
 esp32:

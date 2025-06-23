@@ -34,7 +34,7 @@ substitutions:
 
 packages:
   remote_package_files:
-    url: https://github.com/mikelawrence/ESPHome-Multi-Test
+    url: https://github.com/mikelawrence/ESPHome-Multi-Test@main
     refresh: 1h
     files:
       # Main Config Files

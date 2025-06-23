@@ -36,33 +36,33 @@ substitutions:
   vent_co2_off_trigger: "900"
 
 packages:
-  # SENSORS - PACKAGE B - Sensirion SHT4X, SCD4X and SGP4X
-  sht4x_pkgb: github://mikelawrence/ESPHome-Multi-Test/config/common/pkgb-sht4x.yaml
-  scd4x_pkgb: github://mikelawrence/ESPHome-Multi-Test/config/common/pkgb-scd4x.yaml
-  sgp4x_pkgb: github://mikelawrence/ESPHome-Multi-Test/config/common/pkgb-sgp4x.yaml
+  remote_package_files:
+    url: https://github.com/mikelawrence/ESPHome-Multi-Test
+    refresh: 1h
+    files:
+      # Main Config Files
+      - config/common/pkgb-sht4x.yaml
+      - config/common/pkgb-scd4x.yaml
+      - config/common/pkgb-sgp4x.yaml
+      - config/common/radar-ld2450ml-mtmz.yaml
 
-  # MMWAVE SENSOR - Hi-Link LD2450 - Multi-Target Multi-Zone
-  ld2450_radar: github://mikelawrence/ESPHome-Multi-Test/config/common/radar-ld2450ml-mtmz.yaml
+      # ADDITIONAL SENSORS
+      # Carbon Dioxide (CO) - Figaro TGS5141 sensor
+      - config/common/add-co.yaml
+      # Energy Usage - INA2XX sensor to measure Voltage, Power and Energy Usage
+      - config/common/add-ina2xx.yaml
+      # Light Level - TSL2591 sensor
+      - config/common/add-tsl2591.yaml
+      # Barometric Pressure - BMP581 sensor
+      - config/common/add-bmp581.yaml
+      # Microphone - Adds Sound Level meter
+      - config/common/add-microphone.yaml
 
-  # ADDITIONAL SENSORS
-  # Carbon Dioxide (CO) - Figaro TGS5141 sensor
-  co_add: github://mikelawrence/ESPHome-Multi-Test/config/common/add-co.yaml
-  # Energy Usage - INA2XX sensor to measure Voltage, Power and Energy Usage
-  ina2xx_add: github://mikelawrence/ESPHome-Multi-Test/config/common/add-ina2xx.yaml
-  # Light Level - TSL2591 sensor
-  tsl2591_add: github://mikelawrence/ESPHome-Multi-Test/config/common/add-tsl2591.yaml
-  # Barometric Pressure - BMP581 sensor
-  bmp581_add: github://mikelawrence/ESPHome-Multi-Test/config/common/add-bmp581.yaml
-  # Speaker - Adds audio output and Media Player
-  speaker_add: github://mikelawrence/ESPHome-Multi-Test/config/common/add-speaker.yaml
-  # Microphone - Adds Sound Level meter
-  microphone_add: github://mikelawrence/ESPHome-Multi-Test/config/common/add-microphone.yaml
-
-  # FEATURES
-  # SCD4X Pressure Compensation
-  scd4x_pres_comp_feat: github://mikelawrence/ESPHome-Multi-Test/config/common/feat-scd4x-press-comp.yaml
-  # Automatic Vent - Use humidity and CO₂ control a bathroom vent
-  # auto_vent_feat: github://mikelawrence/ESPHome-Multi-Test/config/common/feat-auto-vent.yaml
+      # FEATURES
+      # SEN6X Pressure Compensation - Adds pressure compensation to SEN6X
+      - config/common/feat-sen6x-press-comp.yaml
+      # Automatic Vent - Use humidity and CO₂ control a bathroom vent
+      # - config/common/feat-auto-vent.yaml
 
 # Add custom components
 external_components:
@@ -70,8 +70,8 @@ external_components:
     components: [ld2450, sen5x, bmp581]
 
 esphome:
-  name: "sensor-pkg-b-ld2450-mtmz"
-  friendly_name: "Sensor Pkg B LD2450 MTMZ"
+  name: ${name}
+  friendly_name: ${friendly_name}
   on_boot:
     - priority: -100
       then:

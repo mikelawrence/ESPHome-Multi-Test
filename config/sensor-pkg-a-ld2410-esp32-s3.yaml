@@ -39,7 +39,7 @@ packages:
     files:
       # Main Config Files
       - config/common/pkga-sen6x.yaml
-      - config/common/radar-c4001.yaml
+      - config/common/radar-ld2410.yaml
 
       # ADDITIONAL SENSORS
       # Carbon Dioxide (CO) - Figaro TGS5141 sensor
@@ -50,8 +50,6 @@ packages:
       - config/common/add-tsl2591.yaml
       # Barometric Pressure - BMP581 sensor
       - config/common/add-bmp581.yaml
-      # Speaker - Adds audio output and Media Player
-      # - config/common/add-speaker.yaml
       # Microphone - Adds Sound Level meter
       - config/common/add-microphone.yaml
 
@@ -67,8 +65,8 @@ external_components:
     components: [sen5x, bmp581]
 
 esphome:
-  name: "sensor-pkg-a-ld2410"
-  friendly_name: "Sensor Pkg A LD2410"
+  name: ${name}
+  friendly_name: ${friendly_name}
   on_boot:
     - priority: -100
       then:

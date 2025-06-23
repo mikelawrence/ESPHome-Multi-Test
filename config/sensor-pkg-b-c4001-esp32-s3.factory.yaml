@@ -29,7 +29,7 @@ http_request:
 # that are provided by this factory yaml file as the user does not need these once adopted.
 dashboard_import:
   package_import_url: github://mikelawrence/ESPHome-Multi-Test/config/sensor-pkg-b-c4001-esp32-s3.yaml@main
-  import_full_config: true
+  import_full_config: false
 
 # Sets up Bluetooth LE (Only on ESP32) to allow the user
 # to provision wifi credentials to the device.

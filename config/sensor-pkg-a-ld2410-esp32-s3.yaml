@@ -34,12 +34,12 @@ substitutions:
 
 packages:
   remote_package_files:
-    url: https://github.com/mikelawrence/ESPHome-Multi-Test/
+    url: https://github.com/mikelawrence/ESPHome-Multi-Test
     refresh: 1h
     files:
       # Main Config Files
       - config/common/pkga-sen6x.yaml
-      - config/common/radar-c4001.yaml
+      - config/common/radar-ld2410.yaml
 
       # ADDITIONAL SENSORS
       # Carbon Dioxide (CO) - Figaro TGS5141 sensor

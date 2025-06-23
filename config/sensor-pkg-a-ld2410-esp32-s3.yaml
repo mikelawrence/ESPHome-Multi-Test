@@ -51,7 +51,7 @@ packages:
       # Barometric Pressure - BMP581 sensor
       - config/common/add-bmp581.yaml
       # Speaker - Adds audio output and Media Player
-      - config/common/add-speaker.yaml
+      # - config/common/add-speaker.yaml
       # Microphone - Adds Sound Level meter
       - config/common/add-microphone.yaml
 

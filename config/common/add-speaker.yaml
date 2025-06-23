@@ -16,7 +16,7 @@ media_player:
       num_channels: 1
     files:
       - id: co_alarm_sound
-        file: github://mikelawrence/ESPHome-Multi-Test/config/media/CO-alarm-message.mp3
+        file: https://github.com/mikelawrence/ESPHome-Multi-Test/blob/main/config/media/CO-alarm-message.mp3
 
 power_supply:
   - id: dac_enable

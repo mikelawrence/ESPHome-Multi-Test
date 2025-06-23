@@ -13,13 +13,13 @@ substitutions:
   co_temp_id: "temperature"
   co_offset: "0.0"
   co_sensitivity: "2.000e-9"
-  co_manufacture_date: "01/01/1999"
+  co_manufacture_date: "Unknown"
   co_serial_number: "111111111111111111"
   # SEN6X Configuration
   sen6x_temperature_offset: "0.0"
   sen6x_humidity_offset: "0.0"
   sen6x_output_rate: "60s"
-  sen6x_calibration_date: "01/01/1999"
+  sen6x_co2_calibration_date: "Unknown"
   # INA2XX Configuration
   INA2XX_output_rate: "60s"
   # Automatically controlled Vent
@@ -61,7 +61,7 @@ packages:
 
 # Add custom components
 external_components:
-  - source: github://mikelawrence/esphome-components@main
+  - source: github://mikelawrence/esphome-components
     components: [dfrobot_c4001, sen5x, bmp581]
 
 esphome:

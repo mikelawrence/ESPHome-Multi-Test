@@ -13,14 +13,15 @@ substitutions:
   co_temp_id: "temperature"
   co_offset: "0.0"
   co_sensitivity: "2.000e-9"
-  co_manufacture_date: "01/01/1999"
+  co_manufacture_date: "Unknown"
   co_serial_number: "111111111111111111"
   # SHT4x Configuration
-  sht4x_temperature_offset: "-4.0"
-  sht4x_humidity_offset: "+14.5"
+  sht4x_temperature_offset: "0.0"
+  sht4x_humidity_offset: "0.0"
   sht4x_output_rate: "60s"
   # SCD4X Configuration
   scd4x_output_rate: "60s"
+  scd4x_co2_calibration_date: "Unknown"
   # SGP4X Configuration
   sgp4x_output_rate: "60s"
   # INA2XX Configuration
@@ -66,7 +67,7 @@ packages:
 
 # Add custom components
 external_components:
-  - source: github://mikelawrence/esphome-components@main
+  - source: github://mikelawrence/esphome-components
     components: [sen5x, bmp581]
 
 esphome:

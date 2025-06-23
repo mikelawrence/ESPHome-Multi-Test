@@ -77,7 +77,6 @@ esphome:
         - light.turn_off:
             id: led_status
 
-
 # ESP32-S3-WROOM-2-N32R16V
 esp32:
   board: esp32s3box
@@ -129,7 +128,7 @@ bluetooth_proxy:
 
 debug:
   update_interval: 60s
-  
+
 web_server:
   port: 80
 

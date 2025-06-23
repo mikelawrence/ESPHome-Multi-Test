@@ -63,6 +63,10 @@ packages:
 external_components:
   - source: github://mikelawrence/esphome-components@main
     components: [ld2450, sen5x, bmp581]
+
+esphome:
+  name: "sensor-pkg-a-ld2450-mtmz"
+  friendly_name: "Sensor Pkg A LD2450 MTMZ"
   on_boot:
     - priority: -100
       then:
@@ -72,7 +76,6 @@ external_components:
       then:
         - light.turn_off:
             id: led_status
-
 
 # ESP32-S3-WROOM-2-N32R16V
 esp32:
@@ -125,7 +128,7 @@ bluetooth_proxy:
 
 debug:
   update_interval: 60s
-  
+
 web_server:
   port: 80
 

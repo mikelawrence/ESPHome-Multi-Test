@@ -34,12 +34,12 @@ substitutions:
 
 packages:
   remote_package_files:
-    url: https://github.com/mikelawrence/ESPHome-Multi-Test@main
+    url: https://github.com/mikelawrence/ESPHome-Multi-Test
     refresh: 1h
     files:
       # Main Config Files
       - config/common/pkga-sen6x.yaml
-      - config/common/radar-ld2410.yaml
+      - config/common/radar-c4001.yaml
 
       # ADDITIONAL SENSORS
       # Carbon Dioxide (CO) - Figaro TGS5141 sensor
@@ -145,6 +145,11 @@ i2c:
     frequency: 400kHz
     scan: true
 
+i2s_audio:
+  - id: speaker_i2s
+    i2s_lrclk_pin: GPIO12
+    i2s_bclk_pin: GPIO11
+
 script:
   - id: update_status_led
     mode: restart
@@ -196,6 +201,12 @@ script:
         last_g = g;
         last_b = b;
 
+power_supply:
+  # Enable DAC Power
+  - id: dac_enable
+    pin: GPIO9
+    enable_on_boot: true
+
 binary_sensor:
   - platform: template
     name: Presence
@@ -233,6 +244,20 @@ light:
     num_leds: 1
     chipset: ws2812
 
+media_player:
+  - platform: speaker
+    name: "Speaker Media Player"
+    id: speaker_media_player_id
+    media_pipeline:
+      speaker: media_spk_resampling_input
+      num_channels: 2
+    announcement_pipeline:
+      speaker: announcement_spk_resampling_input
+      num_channels: 1
+    files:
+      - id: co_alarm_sound
+        file: github://mikelawrence/ESPHome-Multi-Test/config/media/CO-alarm-message.mp3
+
 sensor:
   - platform: debug
     free:
@@ -241,6 +266,28 @@ sensor:
       name: "Heap Max Block"
     loop_time:
       name: "Loop Time"
+
+speaker:
+  - platform: i2s_audio
+    id: speaker_id
+    i2s_audio_id: speaker_i2s
+    dac_type: external
+    i2s_dout_pin: GPIO10
+    sample_rate: 48000
+  - platform: mixer
+    id: mixer_speaker_id
+    output_speaker: speaker_id
+    source_speakers:
+      - id: announcement_spk_mixer_input
+      - id: media_spk_mixer_input
+  - platform: resampler
+    id: media_spk_resampling_input
+    output_speaker: media_spk_mixer_input
+    sample_rate: 48000
+  - platform: resampler
+    id: announcement_spk_resampling_input
+    output_speaker: announcement_spk_mixer_input
+    sample_rate: 48000
 
 switch:
   - platform: template

@@ -261,7 +261,7 @@ media_player:
       num_channels: 1
     files:
       - id: co_alarm_sound
-        file: indoor-multi-sensor/CO-alarm-message.mp3
+        file: https://github.com/mikelawrence/ESPHome-Multi-Test/raw/refs/heads/main/config/media/CO-alarm-message.mp3
 
 sensor:
   - platform: debug

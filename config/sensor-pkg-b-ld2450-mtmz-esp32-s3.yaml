@@ -249,6 +249,20 @@ light:
     num_leds: 1
     chipset: ws2812
 
+media_player:
+  - platform: speaker
+    name: "Speaker Media Player"
+    id: speaker_media_player_id
+    media_pipeline:
+      speaker: media_spk_resampling_input
+      num_channels: 2
+    announcement_pipeline:
+      speaker: announcement_spk_resampling_input
+      num_channels: 1
+    files:
+      - id: co_alarm_sound
+        file: https://github.com/mikelawrence/ESPHome-Multi-Test/raw/refs/heads/main/config/media/CO-alarm-message.mp3
+
 sensor:
   - platform: debug
     free:

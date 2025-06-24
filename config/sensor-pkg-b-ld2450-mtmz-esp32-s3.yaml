@@ -61,7 +61,7 @@ packages:
 
       # FEATURES
       # SEN6X Pressure Compensation - Adds pressure compensation to SEN6X
-      - config/common/feat-sen4x-press-comp.yaml
+      - config/common/feat-scd4x-press-comp.yaml
       # Automatic Vent - Use humidity and CO₂ control a bathroom vent
       # - config/common/feat-auto-vent.yaml
 

@@ -21,7 +21,8 @@ jobs:
         config/sensor-pkg-b-c4001-esp32-s3.factory.yaml
         config/sensor-pkg-b-ld2410-esp32-s3.factory.yaml
         config/sensor-pkg-b-ld2450-mtmz-esp32-s3.factory.yaml
-        config/sensor-pkg-b-ld2450-stsz-esp32-s3.factory.yaml      esphome-version: latest
+        config/sensor-pkg-b-ld2450-stsz-esp32-s3.factory.yaml      
+      esphome-version: latest
       # combined-name: project-template
       #### Modify above here to match your project ####
 

@@ -61,14 +61,14 @@ packages:
 
       # FEATURES
       # SEN6X Pressure Compensation - Adds pressure compensation to SEN6X
-      - config/common/feat-sen6x-press-comp.yaml
+      - config/common/feat-sen4x-press-comp.yaml
       # Automatic Vent - Use humidity and CO₂ control a bathroom vent
       # - config/common/feat-auto-vent.yaml
 
 # Add custom components
 external_components:
   - source: github://mikelawrence/esphome-components
-    components: [dfrobot_c4001, sen5x, bmp581]
+    components: [dfrobot_c4001, bmp581]
 
 esphome:
   name: ${name}

@@ -2,6 +2,8 @@ substitutions:
   name: "sensor-pkg-a-c4001"
   friendly_name: "Indoor Multi-Sensor Pkg A Radar C4001"
 
+error:
+
   # Settings
   use_pir_in_presence: "true"
   # Status LED Configuration

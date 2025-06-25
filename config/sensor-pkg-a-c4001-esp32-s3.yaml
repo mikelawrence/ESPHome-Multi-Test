@@ -1,3 +1,6 @@
+
+error:
+
 substitutions:
   name: "sensor-pkg-a-c4001"
   friendly_name: "Indoor Multi-Sensor Pkg A Radar C4001"

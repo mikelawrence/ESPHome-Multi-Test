@@ -1,0 +1,19 @@
+name: Create Release
+on:
+  pull_request:
+    branches:
+      - main # base branch
+    types:
+      - closed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    if: github.event.pull_request.merged == true # detect when pull request is merged
+    steps:
+    - name: Create release
+      run: |
+        npx gh-calver-release create:release --repo ${{ github.repository }} --target_commitish main --pull_number ${{ github.event.pull_request.number }} --format "yyyy.m.minor" 
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

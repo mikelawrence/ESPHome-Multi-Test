@@ -1,4 +1,4 @@
-name: Release on Merge Pull Request
+name: Create Release
 
 on:
   pull_request:

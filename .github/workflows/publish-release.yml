@@ -22,7 +22,7 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
-          # fetch-tags: true
+          fetch-tags: true
 
       - name: Set Calver Version
         uses: Nelyx/action-calver@v1.1.0
@@ -49,6 +49,23 @@ jobs:
       - name: Use the previous version
         run: |
           echo ${{ steps.version.outputs.previous-version }}
+
+      - uses: actions-ecosystem/action-get-latest-tag@v1
+        id: get-latest-tag
+
+      - name: Use the previous version
+        run: |
+          echo ${{ steps.get-latest-tag.outputs.tag }}
+
+      - uses: ShotaKitazawa/action-bump-calver@v1
+        id: bump-calver
+        with:
+          current_version: ${{ steps.get-latest-tag.outputs.tag }}
+      
+      - name: Use the previous version
+        run: |
+          echo ${{ steps.bump-calver.outputs.new_version }}
+
       # - name: CalVer
       #   id: calver
       #   uses: energostack/calver-action@v1.0.4

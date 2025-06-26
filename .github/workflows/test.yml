@@ -1,0 +1,16 @@
+name: YAML lint
+
+on:
+  workflow_dispatch:
+
+jobs:
+  yamllint:
+    name: Test Latest Version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Latest Release
+        id: latest_version
+        uses: abatilo/release-info-action@v1.3.3
+        with:
+          owner: mikelawrence
+          repo: ESPHome-Multi-Test

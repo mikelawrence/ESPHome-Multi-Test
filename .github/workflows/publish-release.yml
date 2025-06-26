@@ -20,8 +20,9 @@ jobs:
       - name: Checkout source  code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
-          fetch-tags: true
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+          # fetch-tags: true
 
       - name: Set Calver Version
         uses: Nelyx/action-calver@v1.1.0
@@ -38,6 +39,8 @@ jobs:
       - name: Semantic Calendar Version
         id: version
         uses: lukashornych/semantic-calendar-version@v1.2.0
+        with:
+          release-branch: main
 
       - name: Use the version
         run: |

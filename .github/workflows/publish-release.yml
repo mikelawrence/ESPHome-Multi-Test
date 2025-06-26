@@ -37,11 +37,12 @@ jobs:
 
       - name: Semantic Calendar Version
         id: version
-        uses: lukashornych/semantic-calendar-version@1.0.3
+        uses: lukashornych/semantic-calendar-version@1.2.0
 
       - name: Use the version
         run: |
           echo ${{ steps.version.outputs.version }}
+
       - name: Use the previous version
         run: |
           echo ${{ steps.version.outputs.previous-version }}

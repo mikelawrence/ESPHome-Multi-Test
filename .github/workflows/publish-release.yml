@@ -4,8 +4,8 @@ on:
   pull_request:
     branches:
       - main
-    types:
-      - closed
+    # types:
+    #   - closed
   workflow_dispatch:
 
 permissions:
@@ -14,7 +14,7 @@ permissions:
 jobs:
   release:
     name: Release
-    if: github.event.pull_request.merged == true
+    # if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
@@ -23,12 +23,20 @@ jobs:
           fetch-depth: 1
           fetch-tags: true
 
-      - name: CalVer
-        id: calver
-        uses: energostack/calver-action@v1.0.4
+      - name: Set Calver Version
+        uses: Nelyx/action-calver@v1.1.0
+        id: setcalver
         with:
-          date_format: "%Y.%-m"
-          prerelease: ${{ github.event_name == 'workflow_dispatch' }}
+          default_branch: 'refs/heads/main'
+          format: 'YY.M'
+          version_prefix: ''
+          
+      # - name: CalVer
+      #   id: calver
+      #   uses: energostack/calver-action@v1.0.4
+      #   with:
+      #     date_format: "%Y.%-m"
+      #     prerelease: ${{ github.event_name == 'workflow_dispatch' }}
 
       - name: Push Tag
         uses: thejeff77/action-push-tag@v1.0.0

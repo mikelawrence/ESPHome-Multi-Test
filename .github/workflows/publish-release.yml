@@ -27,7 +27,7 @@ jobs:
         id: calver
         uses: energostack/calver-action@v1.0.4
         with:
-          date_format: "%Y.%-m."
+          date_format: "%Y.%-m"
           prerelease: ${{ github.event_name == 'workflow_dispatch' }}
 
       - name: Push Tag

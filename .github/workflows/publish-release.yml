@@ -4,8 +4,8 @@ on:
   pull_request:
     branches:
       - main
-    # types:
-    #   - closed
+    types:
+      - closed
   workflow_dispatch:
 
 permissions:
@@ -14,7 +14,7 @@ permissions:
 jobs:
   release:
     name: Release
-    # if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
@@ -47,6 +47,6 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ steps.calver.outputs.next_version }}
+          tag_name: ${{ steps.setcalver.outputs.package_version }}
           generate_release_notes: true
           prerelease: ${{ github.event_name == 'workflow_dispatch' }}

@@ -1,4 +1,4 @@
-name: Release
+name: Release on Merge Pull Request
 
 on:
   pull_request:
@@ -17,36 +17,28 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout source code
+      - name: Checkout source  code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
           fetch-tags: true
 
-      - name: Set Calver Version
-        uses: Nelyx/action-calver@v1.1.0
-        id: setcalver
+      - name: Calendar Version
+        id: calendar-version
+        uses: harm-matthias-harms/calendar-version@v2.0.0
         with:
-          default_branch: 'refs/heads/main'
-          format: 'YYYY.M'
-          version_prefix: ''
-          
-      # - name: CalVer
-      #   id: calver
-      #   uses: energostack/calver-action@v1.0.4
-      #   with:
-      #     date_format: "%Y.%-m"
-      #     prerelease: ${{ github.event_name == 'workflow_dispatch' }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push Tag
         uses: thejeff77/action-push-tag@v1.0.0
         with:
-          tag: ${{ steps.setcalver.outputs.package_version }}
-          message: '"${{ steps.setcalver.outputs.package_version }}: PR #${{ github.event.pull_request.number }} - ${{ github.event.pull_request.title }}"'
+          tag: ${{ steps.calendar-version.outputs.new-version }}
+          message: '"${{ steps.calendar-version.outputs.new-version }}: PR #${{ github.event.pull_request.number }} - ${{ github.event.pull_request.title }}"'
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ steps.setcalver.outputs.package_version }}
+          tag_name: ${{ steps.calendar-version.outputs.new-version }}
           generate_release_notes: true
           prerelease: ${{ github.event_name == 'workflow_dispatch' }}

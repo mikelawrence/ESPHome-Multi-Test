@@ -1,11 +1,11 @@
-name: Release
+name: Release on Merge Pull Request
 
 on:
   pull_request:
     branches:
       - main
-    # types:
-    #   - closed
+    types:
+      - closed
   workflow_dispatch:
 
 permissions:
@@ -14,7 +14,7 @@ permissions:
 jobs:
   release:
     name: Release
-    # if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source  code
@@ -30,15 +30,15 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Push Tag
-      #   uses: thejeff77/action-push-tag@v1.0.0
-      #   with:
-      #     tag: ${{ steps.calendar-version.outputs.new-version }}
-      #     message: '"${{ steps.calendar-version.outputs.new-version }}: PR #${{ github.event.pull_request.number }} - ${{ github.event.pull_request.title }}"'
+      - name: Push Tag
+        uses: thejeff77/action-push-tag@v1.0.0
+        with:
+          tag: ${{ steps.calendar-version.outputs.new-version }}
+          message: '"${{ steps.calendar-version.outputs.new-version }}: PR #${{ github.event.pull_request.number }} - ${{ github.event.pull_request.title }}"'
 
-      # - name: Create Release
-      #   uses: softprops/action-gh-release@v2
-      #   with:
-      #     tag_name: ${{ steps.calendar-version.outputs.new-version }}
-      #     generate_release_notes: true
-      #     prerelease: ${{ github.event_name == 'workflow_dispatch' }}
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.calendar-version.outputs.new-version }}
+          generate_release_notes: true
+          prerelease: ${{ github.event_name == 'workflow_dispatch' }}

@@ -1,0 +1,42 @@
+name: Release
+
+on:
+  pull_request:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          fetch-tags: true
+
+      - name: CalVer
+        id: calver
+        uses: energostack/calver-action@v1
+        with:
+          date_format: "YYYY.MM.PATCH"
+          prerelease: ${{ github.event_name == 'workflow_dispatch' }}
+
+      - name: Push Tag
+        uses: thejeff77/action-push-tag@v1
+        with:
+          tag: ${{ steps.calver.outputs.next_version }}
+          message: '"${{ steps.calver.outputs.next_version }}: PR #${{ github.event.pull_request.number }} - ${{ github.event.pull_request.title }}"'
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.calver.outputs.next_version }}
+          generate_release_notes: true
+          prerelease: ${{ github.event_name == 'workflow_dispatch' }}

@@ -3,11 +3,6 @@ name: Publish Firmware
 on:
   release:
     types: [published]
-  # workflow_run:
-  #   workflows:
-  #     - Create Release
-  #   types:
-  #     - completed
 
 permissions:
   contents: write
@@ -21,7 +16,6 @@ jobs:
     name: Build Firmware
     uses: esphome/workflows/.github/workflows/build.yml@2025.4.0
     with:
-      #### Modify below here to match your project ####
       files: |
         config/sensor-pkg-a-c4001-esp32-s3.factory.yaml
         config/sensor-pkg-a-ld2410-esp32-s3.factory.yaml
@@ -34,7 +28,6 @@ jobs:
 
       esphome-version: latest
       # combined-name: project-template
-      #### Modify above here to match your project ####
 
       release-summary: ${{ github.event.release.body }}
       release-url: ${{ github.event.release.html_url }}

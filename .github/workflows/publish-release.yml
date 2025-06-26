@@ -50,14 +50,14 @@ jobs:
         run: |
           echo ${{ steps.version.outputs.previous-version }}
 
-      - uses: actions-ecosystem/action-get-latest-tag@v1
+      - uses: actions-ecosystem/action-get-latest-tag@v1.6.0
         id: get-latest-tag
 
       - name: Use the previous version
         run: |
           echo ${{ steps.get-latest-tag.outputs.tag }}
 
-      - uses: ShotaKitazawa/action-bump-calver@v1
+      - uses: ShotaKitazawa/action-bump-calver@v1.0.0
         id: bump-calver
         with:
           current_version: ${{ steps.get-latest-tag.outputs.tag }}

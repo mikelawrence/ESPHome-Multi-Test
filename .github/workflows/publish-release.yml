@@ -37,7 +37,7 @@ jobs:
 
       - name: Semantic Calendar Version
         id: version
-        uses: lukashornych/semantic-calendar-version@1.2.0
+        uses: lukashornych/semantic-calendar-version@v1.2.0
 
       - name: Use the version
         run: |

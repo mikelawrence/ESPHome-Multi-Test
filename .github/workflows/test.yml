@@ -1,4 +1,4 @@
-name: YAML lint
+name: Testing
 
 on:
   workflow_dispatch:
@@ -14,3 +14,10 @@ jobs:
         with:
           owner: mikelawrence
           repo: ESPHome-Multi-Test
+
+      - name: Get latest release 2
+        id: latest_release
+        uses: kaliber5/action-get-release@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          latest: true

@@ -24,70 +24,21 @@ jobs:
           fetch-depth: 0
           fetch-tags: true
 
-      - name: Set Calver  Version
-        uses: Nelyx/action-calver@v1.1.0
-        id: setcalver
-        with:
-          default_branch: 'refs/heads/main'
-          format: 'YYYY.M'
-          version_prefix: ''
-
-      - name: Use the version
-        run: |
-          echo ${{ steps.setcalver.outputs.package_version }}
-
-      - name: Semantic Calendar Version
-        id: version
-        uses: lukashornych/semantic-calendar-version@v1.2.0
-        with:
-          release-branch: main
-
-      - name: Use the version
-        run: |
-          echo ${{ steps.version.outputs.version }}
-
-      - name: Use the previous version
-        run: |
-          echo ${{ steps.version.outputs.previous-version }}
-
       - name: Calendar Version
         id: calendar-version
         uses: harm-matthias-harms/calendar-version@v2.0.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Use the previous version
-        run: |
-          echo ${{ steps.calendar-version.outputs.old-tag }}
-
-      - name: Use the previous version
-        run: |
-          echo ${{ steps.calendar-version.outputs.old-version }}
-
-      - name: Use the previous version
-        run: |
-          echo ${{ steps.calendar-version.outputs.new-tag }}
-
-      - name: Use the previous version
-        run: |
-          echo ${{ steps.calendar-version.outputs.new-version }}
-
-      # - name: CalVer
-      #   id: calver
-      #   uses: energostack/calver-action@v1.0.4
-      #   with:
-      #     date_format: "%Y.%-m"
-      #     prerelease: ${{ github.event_name == 'workflow_dispatch' }}
-
       # - name: Push Tag
       #   uses: thejeff77/action-push-tag@v1.0.0
       #   with:
-      #     tag: ${{ steps.setcalver.outputs.package_version }}
-      #     message: '"${{ steps.setcalver.outputs.package_version }}: PR #${{ github.event.pull_request.number }} - ${{ github.event.pull_request.title }}"'
+      #     tag: ${{ steps.calendar-version.outputs.new-version }}
+      #     message: '"${{ steps.calendar-version.outputs.new-version }}: PR #${{ github.event.pull_request.number }} - ${{ github.event.pull_request.title }}"'
 
       # - name: Create Release
       #   uses: softprops/action-gh-release@v2
       #   with:
-      #     tag_name: ${{ steps.setcalver.outputs.package_version }}
+      #     tag_name: ${{ steps.calendar-version.outputs.new-version }}
       #     generate_release_notes: true
       #     prerelease: ${{ github.event_name == 'workflow_dispatch' }}

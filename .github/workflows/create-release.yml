@@ -64,9 +64,6 @@ jobs:
         with:
           tag_name: ${{ steps.calendar-version.outputs.new-version }}
           release_name: ${{ steps.calendar-version.outputs.new-version }}
-          body: |
-            Changes in this Release
-            - First Change
-            - Second Change
+          body: ${{ steps.build_changelog.outputs.changelog }}
           draft: false
           prerelease: false

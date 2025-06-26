@@ -3,6 +3,11 @@ name: Publish Firmware
 on:
   release:
     types: [released]
+  workflow_run:
+    workflows:
+      - Create Release
+    types:
+      - completed
 
 permissions:
   contents: write

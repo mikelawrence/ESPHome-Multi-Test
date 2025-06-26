@@ -24,7 +24,7 @@ jobs:
           fetch-depth: 0
           fetch-tags: true
 
-      - name: Set Calver Version
+      - name: Set Calver  Version
         uses: Nelyx/action-calver@v1.1.0
         id: setcalver
         with:

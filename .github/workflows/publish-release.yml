@@ -4,7 +4,8 @@ on:
   pull_request:
     branches:
       - main
-
+    types:
+      - closed
   workflow_dispatch:
 
 permissions:
@@ -13,6 +14,7 @@ permissions:
 jobs:
   release:
     name: Release
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
@@ -23,19 +25,19 @@ jobs:
 
       - name: CalVer
         id: calver
-        uses: energostack/calver-action@v1
+        uses: energostack/calver-action@v1.0.4
         with:
           date_format: "YYYY.MM.PATCH"
           prerelease: ${{ github.event_name == 'workflow_dispatch' }}
 
       - name: Push Tag
-        uses: thejeff77/action-push-tag@v1
+        uses: thejeff77/action-push-tag@v1.0.0
         with:
           tag: ${{ steps.calver.outputs.next_version }}
           message: '"${{ steps.calver.outputs.next_version }}: PR #${{ github.event.pull_request.number }} - ${{ github.event.pull_request.title }}"'
 
       - name: Create Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.calver.outputs.next_version }}
           generate_release_notes: true

@@ -16,7 +16,22 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           latest: true
+      - name: Example of consumption of the output
+        env:
+          summary: ${{ steps.getLatestRelease.outputs.body }}
+          url: ${{ steps.getLatestRelease.outputs.html_url }}
+          version: ${{ steps.getLatestRelease.outputs.tag_name }}
+        run: |
+          echo "Version${{ steps.getLatestRelease.outputs.tag_name }}|||||||||URL=${{ steps.getLatestRelease.outputs.html_url }}"
     outputs:
       summary: "jsjsjsjsj"
       url: ${{ steps.getLatestRelease.outputs.html_url }}
       version: ${{ steps.getLatestRelease.outputs.tag_name }}
+  
+  parseReleaseInfo:
+    name: Parse Release Info
+    runs-on: ubuntu-latest
+    needs: getReleaseInfo
+    steps:
+      - name: Parse Latest Release
+        run: echo "Needs={{ needs }}"

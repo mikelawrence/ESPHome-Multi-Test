@@ -1,0 +1,23 @@
+name: Testing
+
+on:
+  workflow_dispatch:
+
+jobs:
+  yamllint:
+    name: Test Latest Version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Latest Release
+        id: latest_version
+        uses: abatilo/release-info-action@v1.3.3
+        with:
+          owner: mikelawrence
+          repo: ESPHome-Multi-Test
+
+      - name: Get latest release 2
+        id: latest_release
+        uses: kaliber5/action-get-release@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          latest: true

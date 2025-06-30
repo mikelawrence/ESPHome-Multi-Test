@@ -30,7 +30,7 @@ jobs:
         id: calendar-version
         uses: harm-matthias-harms/calendar-version@v2.0.0
         with:
-          token: ${{ secrets.GITHUB_TOKEN }} 
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push tag
         uses: thejeff77/action-push-tag@v1.0.0

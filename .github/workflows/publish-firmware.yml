@@ -1,8 +1,11 @@
 name: Publish Firmware
 
 on:
-  release:
-    types: [published]
+  # release:
+  #   types: [published]
+  workflow_run:
+    workflows: [Create Release]
+    types: [completed]
 
 permissions:
   contents: write
@@ -14,6 +17,7 @@ concurrency:
 jobs:
   build-firmware:
     name: Build Firmware
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     uses: esphome/workflows/.github/workflows/build.yml@2025.4.0
     with:
       files: |
@@ -33,8 +37,8 @@ jobs:
       release-url: ${{ github.event.release.html_url }}
       release-version: ${{ github.event.release.tag_name }}
 
-  upload-to-release:
-    name: Upload to Release
+  upload-firmware-to-release:
+    name: Upload Firmware to Release
     uses: esphome/workflows/.github/workflows/upload-to-gh-release.yml@2025.4.0
     needs:
       - build-firmware

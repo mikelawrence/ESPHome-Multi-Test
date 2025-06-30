@@ -34,4 +34,4 @@ jobs:
     needs: getReleaseInfo
     steps:
       - name: Parse Latest Release
-        run: echo "Needs={{ needs }}"
+        run: echo "Needs=${{ needs }}"

@@ -15,32 +15,46 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build-firmware:
+  build_firmware:
     name: Build Firmware
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    uses: esphome/workflows/.github/workflows/build.yml@2025.4.0
-    with:
-      files: |
-        config/sensor-pkg-a-c4001-esp32-s3.factory.yaml
-        config/sensor-pkg-a-ld2410-esp32-s3.factory.yaml
-        config/sensor-pkg-a-ld2450-mtmz-esp32-s3.factory.yaml
-        config/sensor-pkg-a-ld2450-stsz-esp32-s3.factory.yaml
-        config/sensor-pkg-b-c4001-esp32-s3.factory.yaml
-        config/sensor-pkg-b-ld2410-esp32-s3.factory.yaml
-        config/sensor-pkg-b-ld2450-mtmz-esp32-s3.factory.yaml
-        config/sensor-pkg-b-ld2450-stsz-esp32-s3.factory.yaml
+    runs-on: ubuntu-latest
+    outputs:
+      tag_name: ${{ steps.latest_release.outputs.tag_name }}
+    steps:
+      - name: Get Latest Release
+        id: latest_release
+        uses: cardinalby/git-get-release-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          latest: true
+      - name: Build Firmware
+        id: build_firmware_step
+        uses: esphome/workflows/.github/workflows/build.yml@2025.4.0
+        with:
+          files: |
+            config/sensor-pkg-a-c4001-esp32-s3.factory.yaml
+            config/sensor-pkg-a-ld2410-esp32-s3.factory.yaml
+            config/sensor-pkg-a-ld2450-mtmz-esp32-s3.factory.yaml
+            config/sensor-pkg-a-ld2450-stsz-esp32-s3.factory.yaml
+            config/sensor-pkg-b-c4001-esp32-s3.factory.yaml
+            config/sensor-pkg-b-ld2410-esp32-s3.factory.yaml
+            config/sensor-pkg-b-ld2450-mtmz-esp32-s3.factory.yaml
+            config/sensor-pkg-b-ld2450-stsz-esp32-s3.factory.yaml
 
-      esphome-version: latest
-      # combined-name: project-template
+          esphome-version: latest
+          # combined-name: project-template
 
-      release-summary: ${{ github.event.release.body }}
-      release-url: ${{ github.event.release.html_url }}
-      release-version: ${{ github.event.release.tag_name }}
+          release-summary: ${{ steps.latest_release.outputs.body }}
+          release-url: ${{ steps.latest_release.outputs.html_url }}
+          release-version: ${{ steps.latest_release.outputs.tag_name }}
 
-  upload-firmware-to-release:
+
+  upload_firmware_to_release:
     name: Upload Firmware to Release
     uses: esphome/workflows/.github/workflows/upload-to-gh-release.yml@2025.4.0
     needs:
-      - build-firmware
+      - build_firmware
     with:
-      version: ${{ github.event.release.tag_name }}
+      version: ${{ needs.build_firmware.tag_name }}

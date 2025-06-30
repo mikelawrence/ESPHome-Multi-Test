@@ -8,23 +8,17 @@ jobs:
     name: Test Latest Version
     runs-on: ubuntu-latest
     steps:
-      - name: Get Latest Release
-        id: latest_release
-        uses: abatilo/release-info-action@v1.3.3
-        with:
-          owner: mikelawrence
-          repo: ESPHome-Multi-Test
-      - name: Example of consumption of the output
-        env:
-          LATEST: ${{ steps.latest_release.outputs.latest_tag }}
-          LATEST_DATE: ${{ steps.latest_release.outputs.latest_tag_published_at }}
-        run: |
-          echo "Version $LATEST was released at $LATEST_DATE"
-
-      - name: Get latest release 2
-        id: latest_release_2
-        uses: cardinalby/git-get-release-action@v1
+      - name: Get latest release
+        id: getLatestRelease
+        uses: cardinalby/git-get-release-action@1.2.4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           latest: true
+      - name: Example of consumption of the output
+        env:
+          summary: ${{ steps.getLatestRelease.outputs.body }}
+          url: ${{ steps.getLatestRelease.outputs.html_url }}
+          version: ${{ steps.getLatestRelease.outputs.tag_name }}
+        run: |
+          echo "URL=$url\nVersion=$version\nsummary=$summary"

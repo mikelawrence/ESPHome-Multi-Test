@@ -46,10 +46,7 @@ substitutions:
   # SEN6X Configuration
   sen6x_temperature_offset: "0.0"
   sen6x_humidity_offset: "0.0"
-  sen6x_output_rate: "60s"
   sen6x_co2_calibration_date: "Unknown"
-  # INA2XX Configuration
-  INA2XX_output_rate: "60s"
   # Automatically controlled Vent
   vent_ha_entity: fan.vent_id
   vent_use_humidity: "true"

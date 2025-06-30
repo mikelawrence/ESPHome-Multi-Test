@@ -34,4 +34,4 @@ jobs:
     needs: getReleaseInfo
     steps:
       - name: Parse Latest Release
-        run: echo "Needs=${{ toJSON(needs) }}"
+        run: echo "version=${{needs.getReleaseInfo.outputs.version}}           summary=${{needs.getReleaseInfo.outputs.summary}}                                   Needs=${{ toJSON(needs) }}"

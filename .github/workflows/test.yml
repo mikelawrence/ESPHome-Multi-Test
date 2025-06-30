@@ -14,7 +14,13 @@ jobs:
         with:
           owner: mikelawrence
           repo: ESPHome-Multi-Test
-
+      - name: Example of consumption of the output
+        env:
+          LATEST: ${{ steps.latest_version.outputs.latest_tag }}
+          LATEST_DATE: ${{ steps.latest_version.outputs.latest_tag_published_at }}
+        run: |
+          echo "Version $LATEST was released at $LATEST_DATE"
+          
       - name: Get latest release 2
         id: latest_release
         uses: kaliber5/action-get-release@v1

@@ -4,7 +4,8 @@ on:
   # release:
   #   types: [published]
   workflow_run:
-    workflows: [Create Release]
+    workflows:
+      - Release
     types: [completed]
 
 permissions:
@@ -15,12 +16,10 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build_firmware:
-    name: Build Firmware
+  get_release_info:
+    name: Get Release Info
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-    outputs:
-      tag_name: ${{ steps.latest_release.outputs.tag_name }}
     steps:
       - name: Get Latest Release
         id: latest_release
@@ -29,32 +28,38 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           latest: true
-      - name: Build Firmware
-        id: build_firmware_step
-        uses: esphome/workflows/.github/workflows/build.yml@2025.4.0
-        with:
-          files: |
-            config/sensor-pkg-a-c4001-esp32-s3.factory.yaml
-            config/sensor-pkg-a-ld2410-esp32-s3.factory.yaml
-            config/sensor-pkg-a-ld2450-mtmz-esp32-s3.factory.yaml
-            config/sensor-pkg-a-ld2450-stsz-esp32-s3.factory.yaml
-            config/sensor-pkg-b-c4001-esp32-s3.factory.yaml
-            config/sensor-pkg-b-ld2410-esp32-s3.factory.yaml
-            config/sensor-pkg-b-ld2450-mtmz-esp32-s3.factory.yaml
-            config/sensor-pkg-b-ld2450-stsz-esp32-s3.factory.yaml
+    outputs:
+      summary: ${{ steps.latest_release.outputs.body }}
+      url: ${{ steps.latest_release.outputs.html_url }}
+      version: ${{ steps.latest_release.outputs.tag_name }}
 
-          esphome-version: latest
-          # combined-name: project-template
-
-          release-summary: ${{ steps.latest_release.outputs.body }}
-          release-url: ${{ steps.latest_release.outputs.html_url }}
-          release-version: ${{ steps.latest_release.outputs.tag_name }}
-
+  build_firmware:
+    name: Build Firmware
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    uses: esphome/workflows/.github/workflows/build.yml@2025.4.0
+    needs:
+      - get_release_info
+    with:
+      files: |
+        config/sensor-pkg-a-c4001-esp32-s3.factory.yaml
+        config/sensor-pkg-a-ld2410-esp32-s3.factory.yaml
+        config/sensor-pkg-a-ld2450-mtmz-esp32-s3.factory.yaml
+        config/sensor-pkg-a-ld2450-stsz-esp32-s3.factory.yaml
+        config/sensor-pkg-b-c4001-esp32-s3.factory.yaml
+        config/sensor-pkg-b-ld2410-esp32-s3.factory.yaml
+        config/sensor-pkg-b-ld2450-mtmz-esp32-s3.factory.yaml
+        config/sensor-pkg-b-ld2450-stsz-esp32-s3.factory.yaml
+      esphome-version: latest
+      # combined-name: project-template
+      release-summary: ${{ needs.get_release_info.summary }}
+      release-url: ${{ needs.get_release_info.url }}
+      release-version: ${{ needs.get_release_info.version }}
 
   upload_firmware_to_release:
     name: Upload Firmware to Release
     uses: esphome/workflows/.github/workflows/upload-to-gh-release.yml@2025.4.0
     needs:
+      - get_release_info
       - build_firmware
     with:
-      version: ${{ needs.build_firmware.tag_name }}
+      version: ${{ needs.get_release_info.version }}

@@ -17,6 +17,6 @@ jobs:
         with:
           latest: true
     outputs:
-      summary: ${{ steps.getLatestRelease.outputs.body }}
+      summary: "jsjsjsjsj"
       url: ${{ steps.getLatestRelease.outputs.html_url }}
       version: ${{ steps.getLatestRelease.outputs.tag_name }}

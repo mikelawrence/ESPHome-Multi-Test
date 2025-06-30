@@ -19,7 +19,7 @@ concurrency:
 jobs:
   get_release_info:
     name: Get Release Info
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') }}
     runs-on: ubuntu-latest
     steps:
       - name: Get Latest Release
@@ -36,7 +36,6 @@ jobs:
 
   build_firmware:
     name: Build Firmware
-    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') }}
     uses: esphome/workflows/.github/workflows/build.yml@2025.4.0
     needs:
       - get_release_info

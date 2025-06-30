@@ -22,3 +22,7 @@ jobs:
           version: ${{ steps.getLatestRelease.outputs.tag_name }}
         run: |
           echo "URL=$url\nVersion=$version\nsummary=$summary"
+    outputs:
+      summary: ${{ steps.getLatestRelease.outputs.body }}
+      url: ${{ steps.getLatestRelease.outputs.html_url }}
+      version: ${{ steps.getLatestRelease.outputs.tag_name }}

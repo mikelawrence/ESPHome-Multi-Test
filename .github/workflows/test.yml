@@ -12,7 +12,7 @@ jobs:
         id: getLatestRelease
         uses: cardinalby/git-get-release-action@1.2.4
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
         with:
           latest: true
       - name: Example of consumption of the output

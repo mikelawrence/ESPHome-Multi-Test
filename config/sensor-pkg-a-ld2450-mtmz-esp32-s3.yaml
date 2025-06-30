@@ -15,13 +15,12 @@ substitutions:
   co_sensitivity: "2.000e-9"
   co_manufacture_date: "Unknown"
   co_serial_number: "111111111111111111"
-  # SEN6X Configuration
-  sen6x_temperature_offset: "0.0"
-  sen6x_humidity_offset: "0.0"
-  sen6x_output_rate: "60s"
-  sen6x_co2_calibration_date: "Unknown"
-  # INA2XX Configuration
-  INA2XX_output_rate: "60s"
+  # Temperature Configuration
+  temperature_offset: "0.0"
+  # Humidity Configuration
+  humidity_offset: "0.0"
+  # CO₂ Configuration
+  co2_calibration_date: "Unknown"
   # Automatically controlled Vent
   vent_ha_entity: fan.vent_id
   vent_use_humidity: "true"
